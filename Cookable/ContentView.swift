@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    let groupMembers = [
+        "Kody Deda",
+        "Zane Bernard",
+        "Zachary Mitzke",
+        "Robin Wood",
+        "Paolo Imperio",
+    ]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List(groupMembers, id: \.self) {
+                Text($0)
+            }
+            .navigationBarTitle("Team Members")
+        }
     }
 }
 
