@@ -24,7 +24,6 @@ struct SearchView: View {
                             .navigationBarTitle("Search")
 
                         Button("Add Ingredients") {
-                            //viewStore.send(.sheet(.toggleEnabled))
                             viewStore.send(.toggleSheet)
                         }
                         .padding()
@@ -33,8 +32,16 @@ struct SearchView: View {
                     VStack {
                         IngredientsList(store: store).padding()
                         RecipesList(store: store)
+
                     }
                     .navigationBarTitle("Search")
+                    .toolbar {
+                        ToolbarItem {
+                            Button(action: { viewStore.send(.toggleSheet) }) {
+                                Text("Add Ingredients")
+                            }
+                        }
+                    }
                 }
             }
             .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
