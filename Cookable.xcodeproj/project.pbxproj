@@ -50,7 +50,6 @@
 		333C2B9525FF76A7008F5139 = {
 			isa = PBXGroup;
 			children = (
-				33A9D66F261234A300FA8C05 /* RecipeView.swift */,
 				333C2BA025FF76A7008F5139 /* Cookable */,
 				333C2B9F25FF76A7008F5139 /* Products */,
 			);
@@ -67,6 +66,7 @@
 		333C2BA025FF76A7008F5139 /* Cookable */ = {
 			isa = PBXGroup;
 			children = (
+				33A9D66F261234A300FA8C05 /* RecipeView.swift */,
 				333C2BA125FF76A7008F5139 /* CookableApp.swift */,
 				333C2BA325FF76A7008F5139 /* Root.swift */,
 				335E1EC526122207006CCF56 /* Recipe.swift */,

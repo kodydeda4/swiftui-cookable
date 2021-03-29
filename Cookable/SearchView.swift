@@ -70,37 +70,24 @@ struct SearchView: View {
             }
             .sheet(isPresented: viewStore.binding(get: \.sheetView, send: .toggleSheetView)) {
                 VStack(alignment: .leading) {
-                    Text("Start Finding Recipes...")
+                    Text("Ingredients")
                         .font(.title)
                         .bold()
                     
-                    Divider()
-                    Text("Search")
-                        .font(.title2)
-                        .bold()
-                    if viewStore.ingredientsList.count == 0 {
-                        
-                        Text("Tap ingredients to add them to your search...")
-                            .font(.caption)
-                        
-                    } else {
-                        IngredientsList(store: store)
-                    }
-                    Divider()
-                    
-                    Text("Ingredients")
-                        .font(.title2)
-                        .bold()
-                    HStack {
-                        ForEach(Recipe.Ingredient.allCases) { ingredient in
-                            AddIngredientView(
-                                ingredient: ingredient,
-                                selected: viewStore.ingredientsList.contains(ingredient)
-                            ) {
-                                viewStore.send(.toggleIngredient(ingredient))
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
+                            ForEach(Recipe.Ingredient.allCases) { ingredient in
+                                AddIngredientView(
+                                    ingredient: ingredient,
+                                    selected: viewStore.ingredientsList.contains(ingredient)
+                                ) {
+                                    viewStore.send(.toggleIngredient(ingredient))
+                                }
                             }
                         }
+                        .animation(.spring())
                     }
+                    
                     Spacer()
                     Button(action: {
                         viewStore.send(.toggleSheetView)
@@ -110,7 +97,6 @@ struct SearchView: View {
                             .foregroundColor(.blue)
                             .overlay(Text("Search").foregroundColor(.white))
                     }
-                    
                 }
                 .padding()
             }
