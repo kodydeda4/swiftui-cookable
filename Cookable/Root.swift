@@ -18,11 +18,13 @@ struct Root {
             Recipe(name: "Fruit Salad", description: "Description of fruit salad", ingredients: [.apple, .bananna, .orange]),
         ]
         var favoritedRecipes: [Recipe] = []
+        var ingredientsList: [Recipe.Ingredient] = [.apple, .orange]
     }
     
     enum Action: Equatable {
         // action
         case toggleFavorited(Recipe)
+        case toggleIngredient(Recipe.Ingredient)
     }
     
     struct Environment {
@@ -41,6 +43,15 @@ extension Root {
                     state.favoritedRecipes = state.favoritedRecipes.filter { $0 != recipe }
                 case false:
                     state.favoritedRecipes.append(recipe)
+                }
+                return .none
+                
+            case let .toggleIngredient(ingredient):
+                switch state.ingredientsList.contains(ingredient) {
+                case true:
+                    state.ingredientsList = state.ingredientsList.filter { $0 != ingredient }
+                case false:
+                    state.ingredientsList.append(ingredient)
                 }
                 return .none
             }

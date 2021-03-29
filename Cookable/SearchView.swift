@@ -10,28 +10,37 @@ import ComposableArchitecture
 
 struct SearchView: View {
     let store: Store<Root.State, Root.Action>
-    
+        
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                List {
-                    ForEach(viewStore.recipes) { recipe in
-                        HStack {
-                            Text(recipe.name)
-                            Spacer()
-                            Button(action: { viewStore.send(.toggleFavorited(recipe)) }) {
-                                Image(systemName: viewStore.favoritedRecipes.contains(recipe) ? "star.fill" : "star")
-                                    .foregroundColor(.yellow)
+                VStack {
+                    HStack {
+                        ForEach(viewStore.ingredientsList) { ingredient in
+                            IngredientView(ingredient: ingredient) {
+                                viewStore.send(.toggleIngredient(ingredient))
+                            }
+                        }
+                        Spacer()
+                    }
+                    .animation(.spring())
+                    .padding()
+
+                    ScrollView {
+                        ForEach(viewStore.recipes) { recipe in
+                            RecipeView(recipe: recipe) {
+                                viewStore.send(.toggleFavorited(recipe))
                             }
                         }
                     }
                 }
-                .listStyle(GroupedListStyle())
                 .navigationBarTitle("Search")
+                .navigationBarHidden(false)
             }
         }
     }
 }
+
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
