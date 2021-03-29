@@ -14,7 +14,7 @@ struct RecipesList: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ScrollView {
-                ForEach(viewStore.recipes) { recipe in
+                ForEach(viewStore.searchResults) { recipe in
                     NavigationLink(destination: Text("Hi")) {
                         VStack {
                             ZStack {

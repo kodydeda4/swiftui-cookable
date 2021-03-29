@@ -14,9 +14,18 @@ struct SheetView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading) {
-                Text("Ingredients")
+                HStack {
+                    Text("Ingredients")
                     .font(.title)
                     .bold()
+                    
+                    Spacer()
+                    Button(action: { viewStore.send(.clearButtonTapped) }) {
+                        Text("Clear All")
+                            .disabled(viewStore.ingredientsList.isEmpty)
+                    }
+                }
+                Divider()
 
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
@@ -37,11 +46,12 @@ struct SheetView: View {
                 }) {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(height: 40)
-                        .foregroundColor(.blue)
+                        .foregroundColor(viewStore.ingredientsList.isEmpty ? .gray : .blue)
                         .overlay(
-                            Text("Search")
+                            Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search")
                                 .foregroundColor(.white)
                         )
+                        .animation(.spring(), value: viewStore.ingredientsList)
                 }
             }
             .padding()

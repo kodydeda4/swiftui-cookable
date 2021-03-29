@@ -12,9 +12,11 @@ struct Root {
     struct State: Equatable {
         let groupMembers     = ["Kody Deda", "Zane Bernard", "Zachary Mitzke", "Robin Wood", "Paolo Imperio"]
         var recipes          : [Recipe] = Recipe.allRecipes
+        var searchResults    : [Recipe] = []
         var favoritedRecipes : [Recipe] = []
-        var ingredientsList  : [Recipe.Ingredient] = [.apple, .orange]
+        var ingredientsList  : [Recipe.Ingredient] = []
         var sheet            = false
+        
     }
     
     enum Action: Equatable {
@@ -22,6 +24,8 @@ struct Root {
         case toggleIngredient(Recipe.Ingredient)
         case toggleSheet
         case keyPath(BindingAction<Root.State>)
+        case clearButtonTapped
+        case updateSearchResults
     }
     
     struct Environment {
@@ -52,10 +56,22 @@ extension Root {
                 case false:
                     state.ingredientsList.append(ingredient)
                 }
+                return Effect(value: .updateSearchResults)
+                    
+            case .updateSearchResults:
+                state.searchResults = state.recipes.filter { recipe in
+                    let sharedIngredients = recipe.ingredients.filter { state.ingredientsList.contains($0) }
+                    
+                    return sharedIngredients.count > 0
+                }
                 return .none
                 
             case .toggleSheet:
                 state.sheet.toggle()
+                return .none
+                
+            case .clearButtonTapped:
+                state.ingredientsList = []
                 return .none
             }
         }

@@ -22,6 +22,9 @@ struct RootView: View {
                 FavoritesView(store: store)
                     .tabItem { Label("Favorites", systemImage: "star.fill") }
             }
+            .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
+                SheetView(store: store)
+            }
         }
     }
 }

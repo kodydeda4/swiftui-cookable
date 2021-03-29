@@ -127,8 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				33A9D67C261248B200FA8C05 /* AddIngredientView.swift */,
-				33069D072612534100013AEA /* IngredientsListView.swift */,
 				337E087426123232003AD104 /* RemoveIngredientView.swift */,
+				33069D072612534100013AEA /* IngredientsListView.swift */,
 			);
 			path = Ingredient;
 			sourceTree = "<group>";

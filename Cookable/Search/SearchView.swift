@@ -38,14 +38,16 @@ struct SearchView: View {
                     .toolbar {
                         ToolbarItem {
                             Button(action: { viewStore.send(.toggleSheet) }) {
-                                Text("Add Ingredients")
+                                Text("Ingredients")
+                            }
+                        }
+                        ToolbarItem {
+                            Button(action: { viewStore.send(.clearButtonTapped) }) {
+                                Text("Clear")
                             }
                         }
                     }
                 }
-            }
-            .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
-                SheetView(store: store)
             }
         }
     }
