@@ -42,7 +42,7 @@ struct SheetView: View {
                 }
                 Spacer()
                 Button(action: {
-                    viewStore.send(.toggleSheet)
+                    viewStore.send(.searchButtonTapped)
                 }) {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(height: 40)

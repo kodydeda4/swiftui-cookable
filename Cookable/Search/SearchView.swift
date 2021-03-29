@@ -8,7 +8,6 @@
 import SwiftUI
 import ComposableArchitecture
 
-
 struct SearchView: View {
     let store: Store<Root.State, Root.Action>
     @State var displaySheet = false
@@ -16,9 +15,9 @@ struct SearchView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                if viewStore.ingredientsList.count == 0 {
+                if viewStore.searchResults.isEmpty || viewStore.ingredientsList.isEmpty {
                     VStack {
-                        Text("Get Started")
+                        Text(viewStore.ingredientsList.isEmpty ? "Start Searching": "No Results Found")
                             .font(.title)
                             .foregroundColor(Color(.gray))
                             .navigationBarTitle("Search")
@@ -32,13 +31,12 @@ struct SearchView: View {
                     VStack {
                         IngredientsList(store: store).padding()
                         RecipesList(store: store)
-
                     }
                     .navigationBarTitle("Search")
                     .toolbar {
                         ToolbarItem {
                             Button(action: { viewStore.send(.toggleSheet) }) {
-                                Text("Ingredients")
+                                Text("Add Ingredients")
                             }
                         }
                         ToolbarItem {

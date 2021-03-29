@@ -13,6 +13,7 @@ struct Recipe: Equatable, Identifiable {
     var name: String
     var description: String
     var ingredients: [Ingredient]
+    var imageName: String
     var favorite = false
     
     enum Ingredient: String, Identifiable, CaseIterable {
@@ -39,9 +40,9 @@ struct Recipe: Equatable, Identifiable {
 extension Recipe {
     static var allRecipes: [Recipe] {
         [
-            Recipe(name: "Apple Pie", description: "Description of apples", ingredients: [.apple]),
-            Recipe(name: "Banna Pudding", description: "Description of bannanas", ingredients: [.bananna]),
-            Recipe(name: "Fruit Salad", description: "Description of fruit salad", ingredients: [.apple, .bananna, .orange]),
+            Recipe(name: "Apple Pie", description: "Description of apples", ingredients: [.apple], imageName: "apple_pie"),
+            Recipe(name: "Banna Pudding", description: "Description of bannanas", ingredients: [.bananna], imageName: "bananna_pudding"),
+            Recipe(name: "Fruit Salad", description: "Description of fruit salad", ingredients: [.apple, .bananna, .orange], imageName: "fruit_salad"),
         ]
     }
 }

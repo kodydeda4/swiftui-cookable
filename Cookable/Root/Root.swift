@@ -25,7 +25,7 @@ struct Root {
         case toggleSheet
         case keyPath(BindingAction<Root.State>)
         case clearButtonTapped
-        case updateSearchResults
+        case searchButtonTapped
     }
     
     struct Environment {
@@ -56,15 +56,15 @@ extension Root {
                 case false:
                     state.ingredientsList.append(ingredient)
                 }
-                return Effect(value: .updateSearchResults)
+                return .none
                     
-            case .updateSearchResults:
+            case .searchButtonTapped:
                 state.searchResults = state.recipes.filter { recipe in
                     let sharedIngredients = recipe.ingredients.filter { state.ingredientsList.contains($0) }
                     
                     return sharedIngredients.count > 0
                 }
-                return .none
+                return Effect(value: .toggleSheet)
                 
             case .toggleSheet:
                 state.sheet.toggle()
