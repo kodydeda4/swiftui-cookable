@@ -14,13 +14,14 @@ struct Root {
         var recipes          : [Recipe] = Recipe.allRecipes
         var favoritedRecipes : [Recipe] = []
         var ingredientsList  : [Recipe.Ingredient] = [.apple, .orange]
-        var sheetView = false
+        var sheet            = false
     }
     
     enum Action: Equatable {
         case toggleFavorited(Recipe)
         case toggleIngredient(Recipe.Ingredient)
-        case toggleSheetView
+        case toggleSheet
+        case keyPath(BindingAction<Root.State>)
     }
     
     struct Environment {
@@ -32,7 +33,9 @@ extension Root {
     static let reducer = Reducer<State, Action, Environment>.combine(
         Reducer { state, action, environment in
             switch action {
-            
+            case .keyPath:
+                return .none
+
             case let .toggleFavorited(recipe):
                 switch state.favoritedRecipes.contains(recipe) {
                 case true:
@@ -51,11 +54,13 @@ extension Root {
                 }
                 return .none
                 
-            case .toggleSheetView:
-                state.sheetView.toggle()
+            case .toggleSheet:
+                state.sheet.toggle()
                 return .none
             }
         }
+        .binding(action: /Action.keyPath)
+        .debug()
     )
 }
 

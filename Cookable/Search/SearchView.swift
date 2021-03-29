@@ -8,27 +8,10 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct IngredientsList: View {
-    let store: Store<Root.State, Root.Action>
-    
-    var body: some View {
-        WithViewStore(store) { viewStore in
-            HStack {
-                ForEach(viewStore.ingredientsList) { ingredient in
-                    RemoveIngredientView(ingredient: ingredient) {
-                        viewStore.send(.toggleIngredient(ingredient))
-                    }
-                }
-                Spacer()
-            }
-            .animation(.spring())
-        }
-    }
-}
-
 
 struct SearchView: View {
     let store: Store<Root.State, Root.Action>
+    @State var displaySheet = false
     
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -39,9 +22,10 @@ struct SearchView: View {
                             .font(.title)
                             .foregroundColor(Color(.gray))
                             .navigationBarTitle("Search")
-                        
+
                         Button("Add Ingredients") {
-                            viewStore.send(.toggleSheetView)
+                            //viewStore.send(.sheet(.toggleEnabled))
+                            viewStore.send(.toggleSheet)
                         }
                         .padding()
                     }
@@ -53,37 +37,8 @@ struct SearchView: View {
                     .navigationBarTitle("Search")
                 }
             }
-            .sheet(isPresented: viewStore.binding(get: \.sheetView, send: .toggleSheetView)) {
-                VStack(alignment: .leading) {
-                    Text("Ingredients")
-                        .font(.title)
-                        .bold()
-                    
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
-                            ForEach(Recipe.Ingredient.allCases) { ingredient in
-                                AddIngredientView(
-                                    ingredient: ingredient,
-                                    selected: viewStore.ingredientsList.contains(ingredient)
-                                ) {
-                                    viewStore.send(.toggleIngredient(ingredient))
-                                }
-                            }
-                        }
-                        .animation(.spring())
-                    }
-                    
-                    Spacer()
-                    Button(action: {
-                        viewStore.send(.toggleSheetView)
-                    }) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(height: 40)
-                            .foregroundColor(.blue)
-                            .overlay(Text("Search").foregroundColor(.white))
-                    }
-                }
-                .padding()
+            .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
+                SheetView(store: store)
             }
         }
     }
