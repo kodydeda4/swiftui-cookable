@@ -45,8 +45,7 @@ struct RecipeView: View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .shadow(radius: 6, y: 6)
         }
-        .padding()
-        
+        .padding()        
     }
 }
 struct RecipeView_Previews: PreviewProvider {

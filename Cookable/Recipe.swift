@@ -17,11 +17,21 @@ struct Recipe: Equatable, Identifiable {
     
     enum Ingredient: String, Identifiable, CaseIterable {
         var id: Ingredient { self }
-        case apple = "Apple"
-        case orange = "Orange"
-        case bananna = "Bananna"
+        case chicken
+        case beef
+        case fish
+        case shrimp
+        
+        case cheese
+        case pasta
+        case potatoes
+        case spaghetti
+        case soup
+        
+        case apple
+        case orange
+        case bananna
+        case pear
+        case fig
     }
 }
-
-
-//Color(.secondarySystemGroupedBackground)

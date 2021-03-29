@@ -19,12 +19,14 @@ struct Root {
         ]
         var favoritedRecipes: [Recipe] = []
         var ingredientsList: [Recipe.Ingredient] = [.apple, .orange]
+        var sheetView = false
     }
     
     enum Action: Equatable {
         // action
         case toggleFavorited(Recipe)
         case toggleIngredient(Recipe.Ingredient)
+        case toggleSheetView
     }
     
     struct Environment {
@@ -53,6 +55,10 @@ extension Root {
                 case false:
                     state.ingredientsList.append(ingredient)
                 }
+                return .none
+                
+            case .toggleSheetView:
+                state.sheetView.toggle()
                 return .none
             }
         }

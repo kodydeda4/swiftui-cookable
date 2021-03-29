@@ -16,7 +16,7 @@
 		335E1EBE2612167F006CCF56 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E1EBD2612167F006CCF56 /* SearchView.swift */; };
 		335E1EC2261216B8006CCF56 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E1EC1261216B8006CCF56 /* FavoritesView.swift */; };
 		335E1EC626122207006CCF56 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E1EC526122207006CCF56 /* Recipe.swift */; };
-		337E087526123232003AD104 /* IngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337E087426123232003AD104 /* IngredientView.swift */; };
+		337E087526123232003AD104 /* RemoveIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337E087426123232003AD104 /* RemoveIngredientView.swift */; };
 		33A9D670261234A300FA8C05 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9D66F261234A300FA8C05 /* RecipeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +31,7 @@
 		335E1EBD2612167F006CCF56 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		335E1EC1261216B8006CCF56 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		335E1EC526122207006CCF56 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		337E087426123232003AD104 /* IngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientView.swift; sourceTree = "<group>"; };
+		337E087426123232003AD104 /* RemoveIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveIngredientView.swift; sourceTree = "<group>"; };
 		33A9D66F261234A300FA8C05 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +72,7 @@
 				335E1EC526122207006CCF56 /* Recipe.swift */,
 				335E1EBA26121595006CCF56 /* AboutView.swift */,
 				335E1EBD2612167F006CCF56 /* SearchView.swift */,
-				337E087426123232003AD104 /* IngredientView.swift */,
+				337E087426123232003AD104 /* RemoveIngredientView.swift */,
 				335E1EC1261216B8006CCF56 /* FavoritesView.swift */,
 				333C2BA525FF76A8008F5139 /* Assets.xcassets */,
 				333C2BAA25FF76A8008F5139 /* Info.plist */,
@@ -168,7 +168,7 @@
 				335E1EBE2612167F006CCF56 /* SearchView.swift in Sources */,
 				333C2BA425FF76A7008F5139 /* Root.swift in Sources */,
 				335E1EC626122207006CCF56 /* Recipe.swift in Sources */,
-				337E087526123232003AD104 /* IngredientView.swift in Sources */,
+				337E087526123232003AD104 /* RemoveIngredientView.swift in Sources */,
 				335E1EBB26121595006CCF56 /* AboutView.swift in Sources */,
 				33A9D670261234A300FA8C05 /* RecipeView.swift in Sources */,
 				333C2BA225FF76A7008F5139 /* CookableApp.swift in Sources */,
