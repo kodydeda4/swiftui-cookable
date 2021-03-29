@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct CookableApp: App {
-    
     var body: some Scene {
         WindowGroup {
             RootView(store: Root.defaultStore)

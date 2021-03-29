@@ -26,21 +26,6 @@ struct IngredientsList: View {
     }
 }
 
-struct RecipesList: View {
-    let store: Store<Root.State, Root.Action>
-    
-    var body: some View {
-        WithViewStore(store) { viewStore in
-            ScrollView {
-                ForEach(viewStore.recipes) { recipe in
-                    RecipeView(recipe: recipe) {
-                        viewStore.send(.toggleFavorited(recipe))
-                    }
-                }
-            }
-        }
-    }
-}
 
 struct SearchView: View {
     let store: Store<Root.State, Root.Action>

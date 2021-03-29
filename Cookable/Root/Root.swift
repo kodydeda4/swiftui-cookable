@@ -10,20 +10,14 @@ import ComposableArchitecture
 
 struct Root {
     struct State: Equatable {
-        // state
-        let groupMembers = ["Kody Deda", "Zane Bernard", "Zachary Mitzke", "Robin Wood", "Paolo Imperio"]
-        var recipes: [Recipe] = [
-            Recipe(name: "Apples", description: "Description of apples", ingredients: [.apple]),
-            Recipe(name: "Bannas", description: "Description of bannanas", ingredients: [.apple]),
-            Recipe(name: "Fruit Salad", description: "Description of fruit salad", ingredients: [.apple, .bananna, .orange]),
-        ]
-        var favoritedRecipes: [Recipe] = []
-        var ingredientsList: [Recipe.Ingredient] = [.apple, .orange]
+        let groupMembers     = ["Kody Deda", "Zane Bernard", "Zachary Mitzke", "Robin Wood", "Paolo Imperio"]
+        var recipes          : [Recipe] = Recipe.allRecipes
+        var favoritedRecipes : [Recipe] = []
+        var ingredientsList  : [Recipe.Ingredient] = [.apple, .orange]
         var sheetView = false
     }
     
     enum Action: Equatable {
-        // action
         case toggleFavorited(Recipe)
         case toggleIngredient(Recipe.Ingredient)
         case toggleSheetView
@@ -76,26 +70,3 @@ extension Root {
 
 
 
-// MARK:- RootView
-struct RootView: View {
-    let store: Store<Root.State, Root.Action>
-    
-    var body: some View {
-        WithViewStore(store) { viewStore in
-            TabView {
-                AboutView(store: store)
-                    .tabItem { Label("About", systemImage: "gear") }
-                SearchView(store: store)
-                    .tabItem { Label("Search", systemImage: "magnifyingglass") }
-                FavoritesView(store: store)
-                    .tabItem { Label("Favorites", systemImage: "star.fill") }
-            }
-        }
-    }
-}
-
-struct RootView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootView(store: Root.defaultStore)
-    }
-}

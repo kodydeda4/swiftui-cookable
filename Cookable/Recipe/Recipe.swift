@@ -35,3 +35,13 @@ struct Recipe: Equatable, Identifiable {
         case fig
     }
 }
+
+extension Recipe {
+    static var allRecipes: [Recipe] {
+        [
+            Recipe(name: "Apples", description: "Description of apples", ingredients: [.apple]),
+            Recipe(name: "Bannas", description: "Description of bannanas", ingredients: [.apple]),
+            Recipe(name: "Fruit Salad", description: "Description of fruit salad", ingredients: [.apple, .bananna, .orange]),
+        ]
+    }
+}
