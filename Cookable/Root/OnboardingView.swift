@@ -25,7 +25,7 @@ struct OnboardingView: View {
                     .font(.title)
                     .fontWeight(.medium)
                 
-                Text("cook with what you got")
+                Text("Cook with what you got")
                     .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
                 
@@ -34,17 +34,17 @@ struct OnboardingView: View {
                         Feature(
                             name: "Find Recipes",
                             image: Image(systemName: "magnifyingglass"),
-                            description: "Based on ingredients"
+                            description: "Based on your ingredients"
                         ),
                         Feature(
                             name: "Save Favorites",
                             image: Image(systemName: "star"),
-                            description: "All in one place"
+                            description: "All in one organized place"
                         ),
                         Feature(
                             name: "Learn Skills",
                             image: Image(systemName: "heart.text.square"),
-                            description: "Learn by cooking"
+                            description: "Develop culinary skills by cooking"
                         ),
                     ]) { feature in
                         HStack {
