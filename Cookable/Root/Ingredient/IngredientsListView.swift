@@ -15,7 +15,7 @@ struct IngredientsList: View {
         WithViewStore(store) { viewStore in
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
                 ForEach(viewStore.ingredientsList) { ingredient in
-                    RemoveIngredientView(ingredient: ingredient) {
+                    IngredientView(ingredient: ingredient) {
                         viewStore.send(.toggleIngredient(ingredient))
                     }
                 }

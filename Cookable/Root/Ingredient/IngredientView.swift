@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct AddIngredientView: View {
+struct IngredientView: View {
     let ingredient: Recipe.Ingredient
     var selected = false
     var action: () -> Void
@@ -19,10 +19,10 @@ struct AddIngredientView: View {
                 .font(.caption)
                 .foregroundColor(selected ? .primary : .secondary)
                 .lineLimit(1)
+                .frame(maxWidth: 90)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
         }
-        .frame(maxWidth: 90)
-        .padding(.horizontal, 8)
-        .padding(.vertical, 4)
         .background(selected ? Color.blue : Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(radius: 1, y: 0.5)
@@ -31,7 +31,7 @@ struct AddIngredientView: View {
 
 struct AddIngredientView_Previews: PreviewProvider {
     static var previews: some View {
-        AddIngredientView(ingredient: .apple) {
+        IngredientView(ingredient: .apple) {
             // code
         }
     }

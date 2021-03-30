@@ -15,7 +15,7 @@ struct RootView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             TabView {
-                AboutView(store: store)
+                AboutView()
                     .tabItem { Label("About", systemImage: "gear") }
                 SearchView(store: store)
                     .tabItem { Label("Search", systemImage: "magnifyingglass") }

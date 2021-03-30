@@ -30,7 +30,7 @@ struct SheetView: View {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
                         ForEach(Recipe.Ingredient.allCases) { ingredient in
-                            AddIngredientView(
+                            IngredientView(
                                 ingredient: ingredient,
                                 selected: viewStore.ingredientsList.contains(ingredient)
                             ) {

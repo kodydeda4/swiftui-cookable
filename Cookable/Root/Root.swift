@@ -10,13 +10,15 @@ import ComposableArchitecture
 
 struct Root {
     struct State: Equatable {
-        let groupMembers     = ["Kody Deda", "Zane Bernard", "Zachary Mitzke", "Robin Wood", "Paolo Imperio"]
         var recipes          : [Recipe] = Recipe.allRecipes
         var searchResults    : [Recipe] = []
         var favoritedRecipes : [Recipe] = []
         var ingredientsList  : [Recipe.Ingredient] = []
         var sheet            = false
         
+        var showingRecipeResults: Bool {
+            !searchResults.isEmpty && !ingredientsList.isEmpty
+        }
     }
     
     enum Action: Equatable {

@@ -2,28 +2,10 @@
 //  RecipeView.swift
 //  Cookable
 //
-//  Created by Kody Deda on 3/29/21.
+//  Created by Kody Deda on 3/30/21.
 //
 
 import SwiftUI
-import ComposableArchitecture
-
-struct RecipesList: View {
-    let store: Store<Root.State, Root.Action>
-    
-    var body: some View {
-        WithViewStore(store) { viewStore in
-            ScrollView {
-                ForEach(viewStore.searchResults) { recipe in
-                    NavigationLink(destination: RecipeViewLarge(recipe: recipe)) {
-                        RecipeView(recipe: recipe, action: { viewStore.send(.toggleFavorited(recipe)) })
-                    }
-                    .padding()
-                }
-            }
-        }
-    }
-}
 
 struct RecipeView: View {
     let recipe: Recipe
@@ -36,7 +18,8 @@ struct RecipeView: View {
                     .resizable()
                     .scaledToFill()
                     .overlay(Color.black.opacity(0.25).blendMode(.overlay))
-                
+                    .frame(maxHeight: 300)
+
                 VStack {
                     HStack {
                         Text(recipe.name)
@@ -60,20 +43,11 @@ struct RecipeView: View {
         .background(Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .shadow(radius: 6, y: 6)
-
     }
 }
 
-struct RecipeViewLarge: View {
-    let recipe: Recipe
-    
-    var body: some View {
-        Text(recipe.name)
-    }
-}
-
-struct RecipesList_Previews: PreviewProvider {
+struct RecipeView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipesList(store: Root.defaultStore)
+        RecipeView(recipe: Recipe.allRecipes.first!, action: {})
     }
 }
