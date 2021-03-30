@@ -13,11 +13,6 @@ struct AboutView: View {
     var body: some View {
         NavigationView {
             Form {
-//                Image("uncw")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 100)
-//                    .padding()
                 Section(header: Text("UNCW Fall 2021")) {
                     Text("CSC 450 - Software Engineering")
                     Text("Dr Ralph Bradley")

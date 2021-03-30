@@ -42,7 +42,7 @@ struct SheetView: View {
                             }
                         }
                     }
-                }
+                }                
                 Spacer()
                 Button(action: {
                     viewStore.send(.searchButtonTapped)

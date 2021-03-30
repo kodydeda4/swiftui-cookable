@@ -20,15 +20,12 @@ struct RootView: View {
                 SearchView(store: store)
                     .tabItem { Label("Search", systemImage: "magnifyingglass") }
                 FavoritesView(store: store)
-                    .tabItem { Label("Favorites", systemImage: "star.fill") }
+                    .tabItem { Label("Favorites", systemImage: "star") }
             }
             .sheet(isPresented: viewStore.binding(keyPath: \.onboarding, send: Root.Action.keyPath)
             ) {
                 OnboardingView(store: store)
             }
-//            .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
-//                SheetView(store: store)
-//            }
         }
     }
 }

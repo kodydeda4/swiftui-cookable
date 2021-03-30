@@ -23,10 +23,13 @@ struct RecipeView: View {
                         HStack {
                             Spacer()
                             Image(systemName: "star.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
                                 .foregroundColor(.yellow)
                                 .opacity(isFavorited ? 1 : 0)
-                                .padding(4)
-                                .shadow(radius: 2)
+                                .shadow(radius: 20)
+                                .padding(8)
                         }
                         Spacer()
                     }
