@@ -16,8 +16,8 @@ struct SheetView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text("Ingredients")
-                    .font(.title)
-                    .bold()
+                        .font(.title)
+                        .bold()
                     
                     Spacer()
                     Button(action: { viewStore.send(.clearButtonTapped) }) {
@@ -26,9 +26,13 @@ struct SheetView: View {
                     }
                 }
                 Divider()
-
+                    .padding(.bottom)
+                
                 ScrollView {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
+                    LazyVGrid(
+                        columns: [GridItem](repeating: .init(.flexible()), count: 4),
+                        spacing: 20
+                    ) {
                         ForEach(Recipe.Ingredient.allCases) { ingredient in
                             IngredientView(
                                 ingredient: ingredient,
@@ -38,7 +42,7 @@ struct SheetView: View {
                             }
                         }
                     }
-                    .animation(.spring())
+                    
                 }
                 Spacer()
                 Button(action: {
@@ -48,12 +52,15 @@ struct SheetView: View {
                         .frame(height: 40)
                         .foregroundColor(viewStore.ingredientsList.isEmpty ? .gray : .blue)
                         .overlay(
-                            Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search")
-                                .foregroundColor(.white)
+                            Text(viewStore.ingredientsList.isEmpty
+                                    ? "Cancel"
+                                    : "Search"
+                            )
+                            .foregroundColor(.white)
                         )
-                        .animation(.spring(), value: viewStore.ingredientsList)
                 }
             }
+            .animation(.spring())
             .padding()
         }
     }

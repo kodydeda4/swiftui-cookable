@@ -61,7 +61,7 @@ struct SearchView_Previews: PreviewProvider {
     static let mockStore = Store(
         initialState: Root.State(
             searchResults: Recipe.allRecipes,
-            ingredientsList: [.apple]//Recipe.Ingredient.allCases
+            ingredientsList: [.apple]
         ),
         reducer:      Root.reducer,
         environment:  Root.Environment()
