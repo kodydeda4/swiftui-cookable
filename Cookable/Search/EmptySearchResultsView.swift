@@ -25,7 +25,9 @@ struct EmptySearchResultsView: View {
             
             Button("My Ingredients") {
                 action()
-            }            
+            }
+            .padding(.top)
+            
         }
         .navigationBarTitle("Search")
     }

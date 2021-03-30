@@ -38,8 +38,17 @@ struct RecipeLargeView: View {
                         .scaledToFill()
                         .frame(width: geo.size.width, height: 400)
                         .clipped()
-                    
-                    GradientOverlay()
+                        .overlay(
+                            RadialGradient(
+                                gradient: Gradient(colors: [.clear, .black]),
+                                center: .center,
+                                startRadius: 0,
+                                endRadius: 800
+                            )
+                            .opacity(0.8)
+                            .blendMode(.darken)
+                        )
+
                     
                     VStack {
                         HStack {

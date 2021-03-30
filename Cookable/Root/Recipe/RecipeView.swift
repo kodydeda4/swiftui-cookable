@@ -19,8 +19,24 @@ struct RecipeView: View {
                 .frame(height: 200)
                 .clipped()
                 .overlay(
+                    RadialGradient(
+                        gradient: Gradient(colors: [.clear, .black]),
+                        center: .center,
+                        startRadius: 500,
+                        endRadius: 800
+                    )
+                    .opacity(0.6)
+                    .blendMode(.darken)
+                )
+                .overlay(
                     VStack {
+                        Spacer()
                         HStack {
+                            Text(recipe.name)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+
                             Spacer()
                             Image(systemName: "star.fill")
                                 .resizable()
@@ -28,27 +44,34 @@ struct RecipeView: View {
                                 .frame(width: 25, height: 25)
                                 .foregroundColor(.yellow)
                                 .opacity(isFavorited ? 1 : 0)
-                                .shadow(radius: 20)
-                                .padding(8)
+                                
                         }
-                        Spacer()
+                        .padding()
+                        .shadow(radius: 4)
                     }
                 )
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(recipe.name)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                    
-                    Text(recipe.description)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
-                }
-                .padding([.horizontal, .bottom])
-                Spacer()
-            }
+            
+            Text(recipe.description)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .lineLimit(1)
+                .padding()
+
+//            HStack {
+//                VStack(alignment: .leading) {
+//                    Text(recipe.name)
+//                        .font(.subheadline)
+//                        .fontWeight(.semibold)
+//                        .foregroundColor(.primary)
+//
+//                    Text(recipe.description)
+//                        .font(.caption)
+//                        .foregroundColor(.secondary)
+//                        .lineLimit(1)
+//                }
+//                .padding([.horizontal, .bottom])
+//                Spacer()
+//            }
         }
         .background(Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))

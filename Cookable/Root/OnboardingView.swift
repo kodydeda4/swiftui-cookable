@@ -14,12 +14,13 @@ struct OnboardingView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                Spacer()
                 Image("cookable")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)
                     .shadow(radius: 1.5, y: 1)
+                    .padding(.top)
+                    .padding(.top)
                 
                 Text("Welcome to Cookable")
                     .font(.title)
@@ -61,7 +62,7 @@ struct OnboardingView: View {
                                     .fontWeight(.medium)
                                 
                                 Text(feature.description)
-                                    .font(.body)
+                                    //.font(.body)
                                     .foregroundColor(.gray)
                             }
                         }
@@ -83,7 +84,7 @@ struct OnboardingView: View {
                     viewStore.send(.toggleOnboaring)
                 }) {
                     RoundedRectangle(cornerRadius: 10)
-                        .frame(height: 40)
+                        .frame(height: 50)
                         .foregroundColor(.blue)
                         .overlay(Text("Get Started").foregroundColor(.white))
                 }
