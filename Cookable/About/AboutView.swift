@@ -12,13 +12,24 @@ struct AboutView: View {
     
     var body: some View {
         NavigationView {
-            List {
+            Form {
+//                Image("uncw")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 100)
+//                    .padding()
                 Section(header: Text("UNCW Fall 2021")) {
                     Text("CSC 450 - Software Engineering")
                     Text("Dr Ralph Bradley")
                 }
                 Section(header: Text("Team Members")) {
-                    ForEach(["Kody Deda", "Zane Bernard", "Zachary Mitzke", "Robin Wood", "Paolo Imperio"], id: \.self) {
+                    ForEach([
+                        "Kody Deda",
+                        "Zane Bernard",
+                        "Zachary Mitzke",
+                        "Robin Wood",
+                        "Paolo Imperio"
+                    ], id: \.self) {
                         Text($0)
                     }
                 }
