@@ -40,8 +40,12 @@ struct Recipe: Equatable, Identifiable {
 extension Recipe {
     static var allRecipes: [Recipe] {
         [
-            Recipe(name: "Apple Pie", description: "Description of apples", ingredients: [.apple], imageName: "apple_pie"),
-            Recipe(name: "Banna Pudding", description: "Description of bannanas", ingredients: [.bananna], imageName: "bananna_pudding"),
+            Recipe(name: "Apple Pie",
+                   description: "Description of apple pie ~ lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                   ingredients: [.apple], imageName: "apple_pie"),
+            
+            
+            Recipe(name: "Banna Pudding", description: "Description of bannana pudding", ingredients: [.bananna], imageName: "bananna_pudding"),
             Recipe(name: "Fruit Salad", description: "Description of fruit salad", ingredients: [.apple, .bananna, .orange], imageName: "fruit_salad"),
         ]
     }

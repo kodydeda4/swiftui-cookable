@@ -9,45 +9,52 @@ import SwiftUI
 
 struct RecipeView: View {
     let recipe: Recipe
-    var action: () -> Void
+    var isFavorited: Bool
     
     var body: some View {
         VStack {
-            ZStack {
-                Image(recipe.imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .overlay(Color.black.opacity(0.25).blendMode(.overlay))
-                    .frame(maxHeight: 300)
-
-                VStack {
-                    HStack {
-                        Text(recipe.name)
-                            .font(.title)
-                            .bold()
-                            .foregroundColor(.white)
-                            .shadow(radius: 6)
-                        Spacer()
-                        Button(action: action) {
-                            Image(systemName: recipe.favorite ? "star.fill" : "star")
+            Image(recipe.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .clipped()
+                .overlay(
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "star.fill")
                                 .foregroundColor(.yellow)
+                                .opacity(isFavorited ? 1 : 0)
+                                .padding(4)
+                                .shadow(radius: 2)
                         }
+                        Spacer()
                     }
-                    Spacer()
+                )
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(recipe.name)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                    
+                    Text(recipe.description)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
                 }
-                .padding()
+                .padding([.horizontal, .bottom])
+                Spacer()
             }
-            Text(recipe.description)
-                .padding()
         }
         .background(Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
-        .shadow(radius: 6, y: 6)
+        .shadow(radius: 4, y: 4)
     }
 }
-
 struct RecipeView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeView(recipe: Recipe.allRecipes.first!, action: {})
+        RecipeView(recipe: Recipe.allRecipes.first!, isFavorited: true)
+        RecipeView(recipe: Recipe.allRecipes.first!, isFavorited: false)
     }
 }

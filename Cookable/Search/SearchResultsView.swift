@@ -13,7 +13,7 @@ struct SearchResultsView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
+            ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
                     ForEach(viewStore.ingredientsList) { ingredient in
                         IngredientButtonView(ingredient: ingredient) {
@@ -22,31 +22,32 @@ struct SearchResultsView: View {
                     }
                 }
                 .animation(.spring())
-                .padding()
+                .padding(.leading)
                 
-                ScrollView {
-                    ForEach(viewStore.searchResults) { recipe in
-                        NavigationLink(
-                            destination:
-                                RecipeLargeView(
-                                    recipe: recipe,
-                                    action: { viewStore.send(.toggleFavorited(recipe)) },
-                                    favorited: viewStore.favoritedRecipes.contains(recipe)
-                                )
-                        ) {
-                            RecipeView(
+                Text("Showing \(viewStore.searchResults.count) results")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .padding(.leading)
+                    .lineLimit(1)
+                
+                ForEach(viewStore.searchResults) { recipe in
+                    NavigationLink(
+                        destination:
+                            RecipeLargeView(
                                 recipe: recipe,
-                                action: { viewStore.send(.toggleFavorited(recipe)) }
+                                action: { viewStore.send(.toggleFavorited(recipe)) },
+                                favorited: viewStore.favoritedRecipes.contains(recipe)
                             )
-                        }
-                        .padding()
+                    ) {
+                        RecipeView(recipe: recipe, isFavorited: viewStore.favoritedRecipes.contains(recipe))
                     }
+                    .padding()
                 }
             }
             .navigationBarTitle("Search Results")
             .toolbar {
                 ToolbarItem {
-                    Button("My Ingredients") {
+                    Button("Ingredients") {
                         viewStore.send(.toggleSheet)
                     }
                 }

@@ -13,11 +13,24 @@ struct RecipeLargeView: View {
     var favorited: Bool
     
     var body: some View {
-        Text(recipe.name)
-        Button(action: action) {
-            Image(systemName: favorited ? "star.fill" : "star")
+        ScrollView {
+            Image(recipe.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 300)
+            
+            HStack {
+                Button(action: action) {
+                    Image(systemName: favorited ? "star.fill" : "star")
+                }
                 .foregroundColor(.yellow)
+                
+                Text(recipe.name)
+                    .font(.largeTitle)
+            }
+            Text(recipe.description)
         }
+        //.edgesIgnoringSafeArea(.top)
     }
 }
 struct RecipeLargeView_Previews: PreviewProvider {    

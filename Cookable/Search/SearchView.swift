@@ -22,6 +22,9 @@ struct SearchView: View {
                     }
                 }
             }
+            .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
+                SheetView(store: store)
+            }
             .toolbar {
                 ToolbarItem {
                     Button(action: { viewStore.send(.toggleSheet) }) {

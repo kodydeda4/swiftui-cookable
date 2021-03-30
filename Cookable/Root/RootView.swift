@@ -22,9 +22,13 @@ struct RootView: View {
                 FavoritesView(store: store)
                     .tabItem { Label("Favorites", systemImage: "star.fill") }
             }
-            .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
-                SheetView(store: store)
+            .sheet(isPresented: viewStore.binding(keyPath: \.onboarding, send: Root.Action.keyPath)
+            ) {
+                OnboardingView(store: store)
             }
+//            .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
+//                SheetView(store: store)
+//            }
         }
     }
 }

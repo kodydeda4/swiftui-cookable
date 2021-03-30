@@ -14,11 +14,8 @@ struct FavoritesView: View {
     var body: some View {
         WithViewStore(store) {viewStore in
             NavigationView {
-                if viewStore.favoritedRecipes.count == 0 {
-                    Text("Empty")
-                        .font(.title)
-                        .foregroundColor(Color(.gray))
-                        .navigationBarTitle("Favorites")
+                if viewStore.favoritedRecipes.isEmpty {
+                    EmptyFavoritesView()
                 } else {
                     ScrollView {
                         ForEach(viewStore.favoritedRecipes) { recipe in
@@ -29,10 +26,7 @@ struct FavoritesView: View {
                                     favorited: viewStore.favoritedRecipes.contains(recipe)
                                 )
                             ) {
-                                RecipeView(
-                                    recipe: recipe,
-                                    action: { viewStore.send(.toggleFavorited(recipe)) }
-                                )
+                                RecipeView(recipe: recipe, isFavorited: viewStore.favoritedRecipes.contains(recipe))
                             }
                             .padding()
                         }

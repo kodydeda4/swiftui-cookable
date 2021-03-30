@@ -16,6 +16,7 @@ struct Root {
         var ingredientsList  : [Recipe.Ingredient] = []
         var sheet            = false
         var alert            : AlertState<Root.Action>?
+        var onboarding       = true
         
         var showingSearchResults: Bool {
             !searchResults.isEmpty && !ingredientsList.isEmpty
@@ -26,6 +27,7 @@ struct Root {
         case toggleFavorited(Recipe)
         case toggleIngredient(Recipe.Ingredient)
         case toggleSheet
+        case toggleOnboaring
         case keyPath(BindingAction<Root.State>)
         case clearFavoritesButtonTapped
         case clearFavorites
@@ -97,6 +99,9 @@ extension Root {
                 state.alert = nil
                 return .none
 
+            case .toggleOnboaring:
+                state.onboarding.toggle()
+                return .none
             }
         }
         .binding(action: /Action.keyPath)
