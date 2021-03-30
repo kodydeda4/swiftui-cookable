@@ -85,7 +85,7 @@ struct OnboardingView: View {
                 }) {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(height: 50)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.accentColor)
                         .overlay(Text("Get Started").foregroundColor(.white))
                 }
             }

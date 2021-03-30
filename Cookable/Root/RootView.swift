@@ -16,14 +16,12 @@ struct RootView: View {
         WithViewStore(store) { viewStore in
             TabView {
                 AboutView()
-                    .tabItem { Label("About", systemImage: "gear") }
-                    .foregroundColor(.accentColor)
+                    .tabItem { Label("About", systemImage: "gear").foregroundColor(.accentColor) }
                 SearchView(store: store)
-                    .tabItem { Label("Search", systemImage: "magnifyingglass") }
-                    .foregroundColor(.accentColor)
+                    .tabItem { Label("Search", systemImage: "magnifyingglass").foregroundColor(.accentColor) }
                 FavoritesView(store: store)
-                    .tabItem { Label("Favorites", systemImage: "star") }
-                    .foregroundColor(.accentColor)
+                    .tabItem { Label("Favorites", systemImage: "star").foregroundColor(.accentColor) }
+                    
             }
             .sheet(isPresented: viewStore.binding(keyPath: \.onboarding, send: Root.Action.keyPath)
             ) {
