@@ -31,14 +31,18 @@ struct RecipeLargeView: View {
     var body: some View {
         GeometryReader { geo in
             ScrollView {
-                Image(recipe.imageName)
-                    .resizable()
-                    .scaledToFill()
+                Rectangle()
                     .frame(width: geo.size.width, height: 300)
-                    //.clipped()
+                    .overlay(
+                        Image(recipe.imageName)
+                            .resizable()
+                            .scaledToFill()
+                            //.frame(width: geo.size.width, height: 300)
+                            //.clipped()
+                    )
                     .overlay(
                         ZStack {
-                            //GradientOverlay()
+                            GradientOverlay()
                             VStack {
                                 HStack {
                                     Text("Apple Pie")
@@ -50,14 +54,9 @@ struct RecipeLargeView: View {
                                         Image(systemName: favorited ? "star.fill" : "star")
                                             .resizable()
                                             .scaledToFit()
+                                            .foregroundColor(.yellow)
                                             .frame(width: 30, height: 30)
                                     }
-                                    .foregroundColor(.yellow)
-                                    .padding(4)
-                                    .background(Color.white.blendMode(.lighten))
-                                    .clipShape(Circle())
-                                    
-
                                 }
                                 Spacer()
                             }
