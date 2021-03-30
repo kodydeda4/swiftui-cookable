@@ -29,64 +29,59 @@ struct RecipeLargeView: View {
     var favorited: Bool
     
     var body: some View {
-        GeometryReader { geo in
-            ScrollView {
-                Rectangle()
-                    .frame(width: geo.size.width, height: 300)
-                    .overlay(
-                        Image(recipe.imageName)
-                            .resizable()
-                            .scaledToFill()
-                            //.frame(width: geo.size.width, height: 300)
-                            //.clipped()
-                    )
-                    .overlay(
-                        ZStack {
-                            GradientOverlay()
-                            VStack {
-                                HStack {
-                                    Text("Apple Pie")
-                                        .font(.largeTitle)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                    Spacer()
-                                    Button(action: action) {
-                                        Image(systemName: favorited ? "star.fill" : "star")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .foregroundColor(.yellow)
-                                            .frame(width: 30, height: 30)
-                                    }
-                                }
-                                Spacer()
-                            }
-                            .padding()
-                            .padding(.top)
-                            .shadow(radius: 30)
-                        }
-                    )
-                
-                VStack(alignment: .leading) {
-                    Text("Ingredients")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                    
-                    Divider()
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
-                        ForEach(recipe.ingredients) { ingredient in
-                            IngredientButtonView(ingredient: ingredient) {
-                                //
-                            }
+        ScrollView {
+            ZStack {
+                Image(recipe.imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
+                    .clipped()
+
+                //GradientOverlay()
+                VStack {
+                    HStack {
+                        Text(recipe.name)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        Spacer()
+                        Button(action: action) {
+                            Image(systemName: favorited ? "star.fill" : "star")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.yellow)
+                                .frame(width: 30, height: 30)
                         }
                     }
-                    .animation(.spring())
-                    
-                    Divider()
-
-                    Text(recipe.description)
+                    Spacer()
                 }
-                .padding(.horizontal)
+                .padding()
+                .padding(.top)
+                .shadow(radius: 30)
             }
+            .clipShape(Rectangle())
+            
+            
+            VStack(alignment: .leading) {
+                Text("Ingredients")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                
+                Divider()
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
+                    ForEach(recipe.ingredients) { ingredient in
+                        IngredientButtonView(ingredient: ingredient) {
+                            //
+                        }
+                    }
+                }
+                .animation(.spring())
+                
+                Divider()
+                
+                Text(recipe.description)
+            }
+            .padding(.horizontal)
         }
     }
 }
