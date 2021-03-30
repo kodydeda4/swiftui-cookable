@@ -48,8 +48,8 @@ struct SheetView: View {
                     viewStore.send(.searchButtonTapped)
                 }) {
                     RoundedRectangle(cornerRadius: 10)
-                        .frame(height: 40)
-                        .foregroundColor(viewStore.ingredientsList.isEmpty ? .gray : .blue)
+                        .frame(height: 50)
+                        .foregroundColor(viewStore.ingredientsList.isEmpty ? .gray : .accentColor)
                         .overlay(Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search").foregroundColor(.white))
                 }
             }
