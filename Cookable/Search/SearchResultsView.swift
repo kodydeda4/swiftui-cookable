@@ -26,7 +26,14 @@ struct SearchResultsView: View {
                 
                 ScrollView {
                     ForEach(viewStore.searchResults) { recipe in
-                        NavigationLink(destination: RecipeLargeView(recipe: recipe)) {
+                        NavigationLink(
+                            destination:
+                                RecipeLargeView(
+                                    recipe: recipe,
+                                    action: { viewStore.send(.toggleFavorited(recipe)) },
+                                    favorited: viewStore.favoritedRecipes.contains(recipe)
+                                )
+                        ) {
                             RecipeView(
                                 recipe: recipe,
                                 action: { viewStore.send(.toggleFavorited(recipe)) }
@@ -36,10 +43,10 @@ struct SearchResultsView: View {
                     }
                 }
             }
-            .navigationBarTitle("Search")
+            .navigationBarTitle("Search Results")
             .toolbar {
                 ToolbarItem {
-                    Button("Ingredients") {
+                    Button("My Ingredients") {
                         viewStore.send(.toggleSheet)
                     }
                 }

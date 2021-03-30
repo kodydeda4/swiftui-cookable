@@ -15,6 +15,7 @@ struct Root {
         var favoritedRecipes : [Recipe] = []
         var ingredientsList  : [Recipe.Ingredient] = []
         var sheet            = false
+        var alert            : AlertState<Root.Action>?
         
         var showingSearchResults: Bool {
             !searchResults.isEmpty && !ingredientsList.isEmpty
@@ -26,6 +27,9 @@ struct Root {
         case toggleIngredient(Recipe.Ingredient)
         case toggleSheet
         case keyPath(BindingAction<Root.State>)
+        case clearFavoritesButtonTapped
+        case clearFavorites
+        case dismissResetAlert
         case clearButtonTapped
         case searchButtonTapped
     }
@@ -75,6 +79,24 @@ extension Root {
             case .clearButtonTapped:
                 state.ingredientsList = []
                 return .none
+                
+            case .clearFavorites:
+                state.favoritedRecipes = []
+                return .none
+                
+            case .clearFavoritesButtonTapped:
+                state.alert = .init(
+                    title: TextState("Clear Favorites?"),
+                    message: TextState("You cannot undo this action."),
+                    primaryButton: .destructive(TextState("Confirm"), send: .clearFavorites),
+                    secondaryButton: .cancel()
+                )
+                return .none
+                
+            case .dismissResetAlert:
+                state.alert = nil
+                return .none
+
             }
         }
         .binding(action: /Action.keyPath)

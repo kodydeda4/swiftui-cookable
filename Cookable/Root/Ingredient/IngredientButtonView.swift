@@ -17,7 +17,7 @@ struct IngredientButtonView: View {
         Button(action: action) {
             Text(ingredient.rawValue)
                 .font(.caption)
-                .foregroundColor(selected ? .primary : .secondary)
+                .foregroundColor(selected ? .white : .secondary)
                 .lineLimit(1)
                 .frame(maxWidth: 90)
                 .padding(.horizontal, 8)

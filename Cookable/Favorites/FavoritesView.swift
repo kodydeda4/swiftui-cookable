@@ -20,17 +20,32 @@ struct FavoritesView: View {
                         .foregroundColor(Color(.gray))
                         .navigationBarTitle("Favorites")
                 } else {
-                    List {
+                    ScrollView {
                         ForEach(viewStore.favoritedRecipes) { recipe in
-                            HStack {
-                                Text(recipe.name)
-                                Spacer()
-                                Button("Remove") { viewStore.send(.toggleFavorited(recipe)) }
+                            NavigationLink(
+                                destination: RecipeLargeView(
+                                    recipe: recipe,
+                                    action: { viewStore.send(.toggleFavorited(recipe)) },
+                                    favorited: viewStore.favoritedRecipes.contains(recipe)
+                                )
+                            ) {
+                                RecipeView(
+                                    recipe: recipe,
+                                    action: { viewStore.send(.toggleFavorited(recipe)) }
+                                )
+                            }
+                            .padding()
+                        }
+                    }
+                    .alert(store.scope(state: \.alert), dismiss: .dismissResetAlert)
+                    .navigationBarTitle("Favorites")
+                    .toolbar {
+                        ToolbarItem {
+                            Button("Clear All") {
+                                viewStore.send(.clearFavoritesButtonTapped)
                             }
                         }
                     }
-                    .listStyle(GroupedListStyle())
-                    .navigationBarTitle("Favorites")
                 }
             }
         }

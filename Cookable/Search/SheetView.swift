@@ -15,7 +15,7 @@ struct SheetView: View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Ingredients")
+                    Text("My Ingredients")
                         .font(.title)
                         .bold()
                     
@@ -42,7 +42,6 @@ struct SheetView: View {
                             }
                         }
                     }
-                    
                 }
                 Spacer()
                 Button(action: {

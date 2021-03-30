@@ -8,9 +8,6 @@
 import SwiftUI
 import ComposableArchitecture
 
-
-
-
 struct SearchView: View {
     let store: Store<Root.State, Root.Action>
     

@@ -19,11 +19,11 @@ struct EmptySearchResultsView: View {
                 .frame(width: 50)
                 .foregroundColor(Color(.gray))
 
-            Text(emptyIngredientsList ? "Find a Recipe": "No Results")
+            Text(emptyIngredientsList ? "Search Recipes": "No Results")
                 .font(.largeTitle)
                 .foregroundColor(Color(.gray))
-            
-            Button("Add Ingredients") {
+                        
+            Button("My Ingredients") {
                 action()
             }
             .padding(.top, 4)
