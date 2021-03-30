@@ -16,7 +16,8 @@ struct GradientOverlay: View {
                 endPoint: .bottom
             )
             .blendMode(.darken)
-            .frame(height: 100)
+            .opacity(0.8)
+            .frame(height: 150)
             Spacer()
         }
     }
@@ -29,60 +30,65 @@ struct RecipeLargeView: View {
     var favorited: Bool
     
     var body: some View {
-        ScrollView {
-            ZStack {
-                Image(recipe.imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
-
-                //GradientOverlay()
-                VStack {
-                    HStack {
-                        Text(recipe.name)
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+        GeometryReader { geo in
+            ScrollView {
+                ZStack {
+                    Image(recipe.imageName)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geo.size.width, height: 400)
+                        .clipped()
+                    
+                    GradientOverlay()
+                    
+                    VStack {
+                        HStack {
+                            Text(recipe.name)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            Spacer()
+                            Button(action: action) {
+                                Image(systemName: favorited ? "star.fill" : "star")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.yellow)
+                                    .frame(width: 30, height: 30)
+                            }
+                        }
                         Spacer()
-                        Button(action: action) {
-                            Image(systemName: favorited ? "star.fill" : "star")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(.yellow)
-                                .frame(width: 30, height: 30)
+                    }
+                    .padding()
+                    .padding(.top)
+                    .shadow(radius: 30)
+                }
+                .clipShape(Rectangle())
+                
+                
+                VStack(alignment: .leading) {
+                    Text("Ingredients")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    
+                    Divider()
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
+                        ForEach(recipe.ingredients) { ingredient in
+                            IngredientButtonView(ingredient: ingredient) {
+                                //
+                            }
                         }
                     }
-                    Spacer()
+                    .animation(.spring())
+                    
+                    Divider()
+                    
+                    Text(recipe.description)
                 }
-                .padding()
-                .padding(.top)
-                .shadow(radius: 30)
+                .padding(.horizontal)
             }
-            .clipShape(Rectangle())
-            
-            
-            VStack(alignment: .leading) {
-                Text("Ingredients")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                
-                Divider()
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
-                    ForEach(recipe.ingredients) { ingredient in
-                        IngredientButtonView(ingredient: ingredient) {
-                            //
-                        }
-                    }
-                }
-                .animation(.spring())
-                
-                Divider()
-                
-                Text(recipe.description)
-            }
-            .padding(.horizontal)
         }
+        //.navigationBarHidden(true)
+        //.ignoresSafeArea()
     }
 }
 struct RecipeLargeView_Previews: PreviewProvider {
