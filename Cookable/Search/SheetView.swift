@@ -34,7 +34,7 @@ struct SheetView: View {
                         spacing: 20
                     ) {
                         ForEach(Recipe.Ingredient.allCases) { ingredient in
-                            IngredientView(
+                            IngredientButtonView(
                                 ingredient: ingredient,
                                 selected: viewStore.ingredientsList.contains(ingredient)
                             ) {
@@ -51,13 +51,7 @@ struct SheetView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(height: 40)
                         .foregroundColor(viewStore.ingredientsList.isEmpty ? .gray : .blue)
-                        .overlay(
-                            Text(viewStore.ingredientsList.isEmpty
-                                    ? "Cancel"
-                                    : "Search"
-                            )
-                            .foregroundColor(.white)
-                        )
+                        .overlay(Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search").foregroundColor(.white))
                 }
             }
             .animation(.spring())

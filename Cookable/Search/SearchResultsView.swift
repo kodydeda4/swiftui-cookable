@@ -1,0 +1,62 @@
+//
+//  RecipeView.swift
+//  Cookable
+//
+//  Created by Kody Deda on 3/29/21.
+//
+
+import SwiftUI
+import ComposableArchitecture
+
+struct SearchResultsView: View {
+    let store: Store<Root.State, Root.Action>
+    
+    var body: some View {
+        WithViewStore(store) { viewStore in
+            VStack {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
+                    ForEach(viewStore.ingredientsList) { ingredient in
+                        IngredientButtonView(ingredient: ingredient) {
+                            viewStore.send(.toggleIngredient(ingredient))
+                        }
+                    }
+                }
+                .animation(.spring())
+                .padding()
+                
+                ScrollView {
+                    ForEach(viewStore.searchResults) { recipe in
+                        NavigationLink(destination: RecipeLargeView(recipe: recipe)) {
+                            RecipeView(
+                                recipe: recipe,
+                                action: { viewStore.send(.toggleFavorited(recipe)) }
+                            )
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .navigationBarTitle("Search")
+            .toolbar {
+                ToolbarItem {
+                    Button("Ingredients") {
+                        viewStore.send(.toggleSheet)
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct SearchResultsView_Previews: PreviewProvider {
+    static let mockStore = Store(
+        initialState: Root.State(searchResults: Recipe.allRecipes),
+        reducer:      Root.reducer,
+        environment:  Root.Environment()
+    )
+    static var previews: some View {
+        SearchResultsView(store: mockStore)
+    }
+}
+
+

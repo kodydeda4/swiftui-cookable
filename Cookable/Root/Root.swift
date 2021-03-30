@@ -16,7 +16,7 @@ struct Root {
         var ingredientsList  : [Recipe.Ingredient] = []
         var sheet            = false
         
-        var showingRecipeResults: Bool {
+        var showingSearchResults: Bool {
             !searchResults.isEmpty && !ingredientsList.isEmpty
         }
     }

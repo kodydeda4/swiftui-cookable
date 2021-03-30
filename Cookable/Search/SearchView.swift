@@ -8,35 +8,19 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SearchHomepageView: View {
-    var emptyIngredientsList = true
-    var action: () -> Void
-    
-    var body: some View {
-        VStack {
-            Text(emptyIngredientsList ? "Start Searching": "No Results Found")
-                .font(.title)
-                .foregroundColor(Color(.gray))
-            
-            Button("Add Ingredients") {
-                action()
-            }
-            .padding()
-        }
-    }
-}
+
+
 
 struct SearchView: View {
     let store: Store<Root.State, Root.Action>
-    @State var displaySheet = false
     
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                if viewStore.showingRecipeResults {
-                    RecipesList(store: store)
+                if viewStore.showingSearchResults {
+                    SearchResultsView(store: store)
                 } else {
-                    SearchHomepageView(emptyIngredientsList: viewStore.ingredientsList.isEmpty) {
+                    EmptySearchResultsView(emptyIngredientsList: viewStore.ingredientsList.isEmpty) {
                         viewStore.send(.toggleSheet)
                     }
                 }
