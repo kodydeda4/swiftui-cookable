@@ -8,11 +8,11 @@
 import SwiftUI
 import ComposableArchitecture
 
+// TODO: Fix tapping out of bounds
+
 struct SearchResultsView: View {
     let store: Store<Root.State, Root.Action>
-    
-    @State var tapped = false
-    
+
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
@@ -46,21 +46,22 @@ struct SearchResultsView: View {
                                     }
                                 }
                                 .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)
-                                .background(
-                                    Image(recipe.imageName)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .overlay(
-                                            RadialGradient(
-                                                gradient: Gradient(colors: [.clear, .black]),
-                                                center: .center,
-                                                startRadius: 4,
-                                                endRadius: 400
-                                            )
-                                            .opacity(0.4)
-                                        )
-                                )
-                                .clipShape(Rectangle())
+                                .background(Color.gray)
+//                                .background(
+//                                    Image(recipe.imageName)
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fill)
+//                                        .overlay(
+//                                            RadialGradient(
+//                                                gradient: Gradient(colors: [.clear, .black]),
+//                                                center: .center,
+//                                                startRadius: 4,
+//                                                endRadius: 400
+//                                            )
+//                                            .opacity(0.4)
+//                                        )
+//                                )
+                                .clipped()
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text(recipe.description)
@@ -74,7 +75,6 @@ struct SearchResultsView: View {
                                 .background(Color(.tertiarySystemBackground))
                             }
                             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                            .border(Color.blue)
                             .onTapGesture { viewStore.send(.updateSelectedRecipe(recipe)) }
                             .padding()
                             .shadow(color: Color.black.opacity(0.3), radius: 20, y: 10)
