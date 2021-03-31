@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeView: View {
     let recipe: Recipe
     var favorited: Bool
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading) {
@@ -41,7 +41,7 @@ struct RecipeView: View {
                         .opacity(0.4)
                     )
             )
-            .clipShape(Rectangle())
+            .clipped()
             HStack {
                 VStack(alignment: .leading) {
                     Text(recipe.description)

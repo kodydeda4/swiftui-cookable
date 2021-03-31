@@ -31,52 +31,8 @@ struct SearchResultsView: View {
 
                     ScrollView {
                         ForEach(viewStore.searchResults) { recipe in
-                            VStack(alignment: .leading, spacing: 0) {
-                                VStack(alignment: .leading) {
-                                    Spacer()
-                                    HStack {
-                                        Text(recipe.name)
-                                            .font(.title)
-                                            .bold()
-                                            //.frame(maxWidth: .infinity)
-                                            .padding()
-                                            .foregroundColor(.white)
-                                            .shadow(radius: 4)
-                                        Spacer()
-                                    }
-                                }
-                                .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)
-                                .background(
-                                    Image(recipe.imageName)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .overlay(
-                                            RadialGradient(
-                                                gradient: Gradient(colors: [.clear, .black]),
-                                                center: .center,
-                                                startRadius: 4,
-                                                endRadius: 400
-                                            )
-                                            .opacity(0.4)
-                                        )
-                                )
-                                .clipped()
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(recipe.description)
-                                            .lineLimit(1)
-                                    }
-                                    .foregroundColor(.secondary)
-                                    Spacer()
-                                }
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color(.tertiarySystemBackground))
-                            }
-                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                            .onTapGesture { viewStore.send(.updateSelectedRecipe(recipe)) }
-                            .padding()
-                            .shadow(color: Color.black.opacity(0.3), radius: 20, y: 10)
+                            RecipeView(recipe: recipe, favorited: viewStore.favoritedRecipes.contains(recipe))
+                                .onTapGesture { viewStore.send(.updateSelectedRecipe(recipe)) }
                         }
                         
                     }
