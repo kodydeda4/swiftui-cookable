@@ -41,7 +41,7 @@ extension Recipe {
     static var allRecipes: [Recipe] {
         [
             Recipe(name: "Apple Pie",
-                   description: "Description of apple pie ~ lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                    ingredients: [.apple], imageName: "apple_pie"),
             
             

@@ -8,6 +8,9 @@
 import SwiftUI
 import ComposableArchitecture
 
+//      Starts @ 1hr ish
+//      https://www.youtube.com/watch?v=jwWfhM7ZuaI&t=3513s
+
 struct SearchResultsView: View {
     let store: Store<Root.State, Root.Action>
     
@@ -57,7 +60,7 @@ struct SearchResultsView: View {
                                                     Spacer()
                                                 }
                                             }
-                                            .frame(maxWidth: .infinity, minHeight: 250, maxHeight: 250)
+                                            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)
                                             .background(
                                                 Image(recipe.imageName)
                                                     .resizable()
@@ -83,17 +86,15 @@ struct SearchResultsView: View {
                                             }
                                             .padding()
                                             .frame(maxWidth: .infinity)
-                                            .background(Color(.secondarySystemBackground))
+                                            .background(Color(.tertiarySystemBackground))
                                         }
                                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                                         .padding()
                                         .shadow(color: Color.black.opacity(0.3), radius: 20, y: 10)
                                     }
-                                    
                                 }
                             }
                         }
-                        
                     }
                 }
                 .navigationBarTitle("Search Results")

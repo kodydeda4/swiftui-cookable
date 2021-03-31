@@ -22,12 +22,11 @@ struct EmptySearchResultsView: View {
             Text(emptyIngredientsList ? "Search Recipes": "No Results")
                 .font(.largeTitle)
                 .foregroundColor(Color(.gray))
+                .padding(.bottom)
             
             Button("My Ingredients") {
                 action()
             }
-            .padding(.top)
-            
         }
         .navigationBarTitle("Search")
     }

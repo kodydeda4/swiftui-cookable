@@ -17,20 +17,23 @@ struct FavoritesView: View {
                 if viewStore.favoritedRecipes.isEmpty {
                     EmptyFavoritesView()
                 } else {
-                    ScrollView {
-                        ForEach(viewStore.favoritedRecipes) { recipe in
-                            NavigationLink(
-                                destination: RecipeLargeView(
-                                    recipe: recipe,
-                                    action: { viewStore.send(.toggleFavorited(recipe)) },
-                                    favorited: viewStore.favoritedRecipes.contains(recipe)
-                                )
-                            ) {
-                                RecipeView(recipe: recipe, isFavorited: viewStore.favoritedRecipes.contains(recipe))
-                            }
-                            .padding()
-                        }
+                    List(viewStore.favoritedRecipes) {
+                        Text($0.name)
                     }
+//                    ScrollView {
+//                        ForEach(viewStore.favoritedRecipes) { recipe in
+//                            NavigationLink(
+//                                destination: RecipeLargeView(
+//                                    recipe: recipe,
+//                                    action: { viewStore.send(.toggleFavorited(recipe)) },
+//                                    favorited: viewStore.favoritedRecipes.contains(recipe)
+//                                )
+//                            ) {
+//                                RecipeView(recipe: recipe, isFavorited: viewStore.favoritedRecipes.contains(recipe))
+//                            }
+//                            .padding()
+//                        }
+//                    }
                     .alert(store.scope(state: \.alert), dismiss: .dismissResetAlert)
                     .navigationBarTitle("Favorites")
                     .toolbar {

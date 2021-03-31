@@ -30,74 +30,49 @@ struct RecipeLargeView: View {
     var favorited: Bool
     
     var body: some View {
-        GeometryReader { geo in
-            Form {
-                ZStack {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading) {
+                    // Image stuff
+                }
+                .frame(maxWidth: .infinity, minHeight: 500, maxHeight: 500)
+                .background(
                     Image(recipe.imageName)
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: geo.size.width, height: 400)
-                        .clipped()
-                        .overlay(
-                            RadialGradient(
-                                gradient: Gradient(colors: [.clear, .black]),
-                                center: .center,
-                                startRadius: 0,
-                                endRadius: 800
-                            )
-                            .opacity(0.8)
-                            .blendMode(.darken)
-                        )
-
-                    
-                    VStack {
-                        HStack {
-                            Text(recipe.name)
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                            Spacer()
-                            Button(action: action) {
-                                Image(systemName: favorited ? "star.fill" : "star")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(.yellow)
-                                    .frame(width: 30, height: 30)
-                            }
-                        }
-                        Spacer()
-                    }
-                    .padding()
-                    .padding(.top)
-                    .shadow(radius: 30)
-                }
+                        .aspectRatio(contentMode: .fill)
+                )
                 .clipShape(Rectangle())
                 
-                
                 VStack(alignment: .leading) {
-                    Text("Ingredients")
+                    HStack {
+                        Text(recipe.name)
                         .font(.title)
-                        .fontWeight(.semibold)
-                    
-                    Divider()
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()),], spacing: 20) {
-                        ForEach(recipe.ingredients) { ingredient in
-                            IngredientButtonView(ingredient: ingredient) {
-                                //
-                            }
+                        .bold()
+                        
+                        Spacer()
+                        Button(action: action) {
+                            Image(systemName: favorited ? "heart.fill" : "heart")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(favorited ? .pink : .primary)
+                                .frame(width: 30, height: 30)
                         }
                     }
-                    .animation(.spring())
                     
                     Divider()
                     
                     Text(recipe.description)
+                        .foregroundColor(.secondary)
+
+                    
                 }
-                .padding(.horizontal)
+                .padding()
+                .frame(maxWidth: .infinity)
+                //.shadow(color: Color.black.opacity(0.3), radius: 20, y: 10)
             }
         }
-        //.navigationBarHidden(true)
-        //.ignoresSafeArea()
+        .navigationBarHidden(true)
+        .ignoresSafeArea()
     }
 }
 struct RecipeLargeView_Previews: PreviewProvider {

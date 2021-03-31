@@ -49,11 +49,11 @@ struct SheetView: View {
                 }) {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(height: 50)
-                        .foregroundColor(viewStore.ingredientsList.isEmpty ? .gray : .accentColor)
+                        .foregroundColor(viewStore.ingredientsList.isEmpty ? .secondary : .accentColor)
                         .overlay(Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search").foregroundColor(.white))
                 }
             }
-            .animation(.spring())
+            .animation(.easeInOut)
             .padding()
         }
     }

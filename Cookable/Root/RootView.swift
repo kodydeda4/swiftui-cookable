@@ -21,7 +21,7 @@ struct RootView: View {
                 SearchResultsView(store: store)
                     .tabItem { Label("Search", systemImage: "magnifyingglass").foregroundColor(.accentColor) }
                 FavoritesView(store: store)
-                    .tabItem { Label("Favorites", systemImage: "star").foregroundColor(.accentColor) }
+                    .tabItem { Label("Favorites", systemImage: "heart").foregroundColor(.accentColor) }
                     
             }
             .sheet(isPresented: viewStore.binding(keyPath: \.onboarding, send: Root.Action.keyPath)

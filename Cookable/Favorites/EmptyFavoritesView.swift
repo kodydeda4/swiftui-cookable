@@ -9,10 +9,18 @@ import SwiftUI
 
 struct EmptyFavoritesView: View {
     var body: some View {
-        Text("Empty")
-            .font(.title)
-            .foregroundColor(Color(.gray))
-            .navigationBarTitle("Favorites")
+        VStack {
+            Image(systemName: "heart.text.square")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50)
+                .foregroundColor(Color(.gray))
+
+            Text("Favorites List")
+                .font(.largeTitle)
+                .foregroundColor(Color(.gray))
+        }
+        .navigationBarTitle("Favorites")
     }
 }
 
