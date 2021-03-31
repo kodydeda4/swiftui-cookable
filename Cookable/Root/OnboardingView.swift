@@ -20,8 +20,8 @@ struct OnboardingView: View {
                     .scaledToFit()
                     .frame(width: 100, height: 100)
                     .shadow(radius: 1.5, y: 1)
-                    .padding(.top)
-                    .padding(.top)
+                    .padding()
+                    .padding()
                 
                 Text("Welcome to Cookable")
                     .font(.largeTitle)
