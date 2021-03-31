@@ -82,7 +82,7 @@ struct SearchResultsView: View {
                         
                     }
                 } else {
-                    RecipeLargeView(
+                    SelectedRecipeView(
                         recipe: viewStore.selectedRecipe!,
                         action: { viewStore.send(.toggleFavorited(viewStore.selectedRecipe!)) },
                         favorited: viewStore.favoritedRecipes.contains(viewStore.selectedRecipe!)

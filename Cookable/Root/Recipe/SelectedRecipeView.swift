@@ -24,7 +24,7 @@ struct GradientOverlay: View {
 }
 
 
-struct RecipeLargeView: View {
+struct SelectedRecipeView: View {
     let recipe: Recipe
     var action: () -> Void
     var favorited: Bool
@@ -75,9 +75,9 @@ struct RecipeLargeView: View {
         .ignoresSafeArea()
     }
 }
-struct RecipeLargeView_Previews: PreviewProvider {
+struct SelectedRecipeView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeLargeView(recipe: Recipe.allRecipes.first!, action: {}, favorited: false)
-        RecipeLargeView(recipe: Recipe.allRecipes.first!, action: {}, favorited: true)
+        SelectedRecipeView(recipe: Recipe.allRecipes.first!, action: {}, favorited: false)
+        SelectedRecipeView(recipe: Recipe.allRecipes.first!, action: {}, favorited: true)
     }
 }
