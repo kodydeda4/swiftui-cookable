@@ -20,12 +20,6 @@ struct SearchResultsView: View {
                             viewStore.send(.toggleSheet)
                         }
                     } else {
-                        //                        Text("Showing \(viewStore.searchResults.count) results")
-                        //                            .font(.caption)
-                        //                            .foregroundColor(.secondary)
-                        //                            .padding(.leading)
-                        //                            .lineLimit(1)
-                        
                         VStack {
                             LazyVGrid(
                                 columns: [GridItem](repeating: .init(.flexible()), count: 4),
@@ -89,7 +83,7 @@ struct SearchResultsView: View {
                                             }
                                             .padding()
                                             .frame(maxWidth: .infinity)
-                                            .background(Color.white)
+                                            .background(Color(.secondarySystemBackground))
                                         }
                                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                                         .padding()
