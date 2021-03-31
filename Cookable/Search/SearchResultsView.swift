@@ -46,21 +46,20 @@ struct SearchResultsView: View {
                                     }
                                 }
                                 .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)
-                                .background(Color.gray)
-//                                .background(
-//                                    Image(recipe.imageName)
-//                                        .resizable()
-//                                        .aspectRatio(contentMode: .fill)
-//                                        .overlay(
-//                                            RadialGradient(
-//                                                gradient: Gradient(colors: [.clear, .black]),
-//                                                center: .center,
-//                                                startRadius: 4,
-//                                                endRadius: 400
-//                                            )
-//                                            .opacity(0.4)
-//                                        )
-//                                )
+                                .background(
+                                    Image(recipe.imageName)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .overlay(
+                                            RadialGradient(
+                                                gradient: Gradient(colors: [.clear, .black]),
+                                                center: .center,
+                                                startRadius: 4,
+                                                endRadius: 400
+                                            )
+                                            .opacity(0.4)
+                                        )
+                                )
                                 .clipped()
                                 HStack {
                                     VStack(alignment: .leading) {
@@ -84,10 +83,10 @@ struct SearchResultsView: View {
                 } else {
                     SelectedRecipeView(
                         recipe: viewStore.selectedRecipe!,
-                        action: { viewStore.send(.toggleFavorited(viewStore.selectedRecipe!)) },
+                        toggleFavoriteAction: { viewStore.send(.toggleFavorited(viewStore.selectedRecipe!)) },
+                        toggleSelectedAction: { viewStore.send(.updateSelectedRecipe(nil)) },
                         favorited: viewStore.favoritedRecipes.contains(viewStore.selectedRecipe!)
                     )
-                    .onTapGesture { viewStore.send(.updateSelectedRecipe(nil)) }
                 }
             }
         }
