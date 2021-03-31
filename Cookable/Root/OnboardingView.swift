@@ -14,6 +14,7 @@ struct OnboardingView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
+                Spacer()
                 Image("cookable")
                     .resizable()
                     .scaledToFit()
@@ -23,8 +24,8 @@ struct OnboardingView: View {
                     .padding(.top)
                 
                 Text("Welcome to Cookable")
-                    .font(.title)
-                    .fontWeight(.medium)
+                    .font(.largeTitle)
+                    .fontWeight(.heavy)
                 
                 Text("Cook with what you got")
                     .multilineTextAlignment(.center)
@@ -53,13 +54,13 @@ struct OnboardingView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .foregroundColor(.accentColor)
-                                .frame(width: 24, height: 24)
-                                .padding(.trailing, 2)
+                                .frame(width: 36)//, height: 36)
+                                .padding(.trailing)
                             
                             VStack(alignment: .leading) {
                                 Text(feature.name)
-                                    .font(.headline)
-                                    .fontWeight(.medium)
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
                                 
                                 Text(feature.description)
                                     //.font(.body)
@@ -99,4 +100,10 @@ struct Feature: Identifiable, Equatable {
     let name: String
     let image: Image
     let description: String
+}
+
+struct OnboardingView_Previews: PreviewProvider {
+    static var previews: some View {
+        OnboardingView(store: Root.defaultStore)
+    }
 }

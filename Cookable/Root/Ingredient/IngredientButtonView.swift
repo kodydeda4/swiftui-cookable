@@ -16,16 +16,16 @@ struct IngredientButtonView: View {
     var body: some View {
         Button(action: action) {
             Text(ingredient.rawValue)
-                .font(.caption)
+                //.font(.caption)
                 .foregroundColor(selected ? .white : .secondary)
                 .lineLimit(1)
                 .frame(maxWidth: 90)
                 .padding(.horizontal, 8)
-                .padding(.vertical, 4)
+                .padding(.vertical, 6)
         }
         .background(selected ? Color.accentColor : Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20))
-        .shadow(radius: 1, y: 0.5)
+        //.shadow(radius: 1, y: 0.5)
     }
 }
 

@@ -120,9 +120,9 @@
 		33A9D6782612486700FA8C05 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				332C3AD626137847001DBA75 /* OnboardingView.swift */,
 				333C2BA325FF76A7008F5139 /* Root.swift */,
 				33A9D6742612485100FA8C05 /* RootView.swift */,
+				332C3AD626137847001DBA75 /* OnboardingView.swift */,
 				33A9D67B261248A000FA8C05 /* Ingredient */,
 				33A9D6792612487200FA8C05 /* Recipe */,
 			);
