@@ -34,29 +34,43 @@ struct SearchResultsView: View {
                             Button(action: { viewStore.send(.updateSelectedRecipe(recipe)) }) {
                                 VStack(alignment: .leading) {
                                     Color.clear
-                                        .frame(height: 300)
-                                        .overlay(Image(recipe.imageName).resizable().scaledToFill().clipped())
+                                        .frame(height: 200)
+                                        .overlay(
+                                            Image(recipe.imageName)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .clipped()
+                                        )
                                         .clipShape(Rectangle())
                                     
                                     Spacer()
                                     VStack(alignment: .leading) {
                                         Text(recipe.name)
-                                            .font(.title)
-                                            .fontWeight(.black)
+                                            .font(.title2)
+                                            .bold()
                                             .foregroundColor(.primary)
+                                        
                                         Text(recipe.description.uppercased())
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                             .lineLimit(1)
+                                        
+                                        Spacer()
                                     }
-                                    .padding()
+                                    .padding(.horizontal)
+                                    .padding(.trailing, 6)
+                                    .padding(.vertical, 8)
+                                    
                                 }
-                                .background(Color(.tertiarySystemBackground))
+                                .background(Color(.secondarySystemBackground))
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
-                                .padding()
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                //                                .shadow(radius: 10)
                             }
                         }
                     }
+                    
                 } else {
                     SelectedRecipeView(
                         recipe: viewStore.selectedRecipe!,
@@ -66,6 +80,7 @@ struct SearchResultsView: View {
                     )
                 }
             }
+            .animation(.spring(), value: viewStore.selectedRecipe)
         }
     }
 }
