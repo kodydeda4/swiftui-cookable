@@ -11,31 +11,26 @@ import ComposableArchitecture
 struct SearchResultsView: View {
     let store: Store<Root.State, Root.Action>
     
+    @State var tapped = false
+    
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                LazyVGrid(
-                    columns: [GridItem](repeating: .init(.flexible()), count: 4),
-                    spacing: 20
-                ) {
-                    ForEach(viewStore.ingredientsList) { ingredient in
-                        IngredientButtonView(ingredient: ingredient, selected: true) {
-                            viewStore.send(.toggleIngredient(ingredient))
+                if viewStore.selectedRecipe == nil {
+                    LazyVGrid(
+                        columns: [GridItem](repeating: .init(.flexible()), count: 4),
+                        spacing: 20
+                    ) {
+                        ForEach(viewStore.ingredientsList) { ingredient in
+                            IngredientButtonView(ingredient: ingredient, selected: true) {
+                                viewStore.send(.toggleIngredient(ingredient))
+                            }
                         }
                     }
-                }
-                .padding()
-                
-                ScrollView {
-                    ForEach(viewStore.searchResults) { recipe in
-                        NavigationLink(
-                            destination:
-                                RecipeLargeView(
-                                    recipe: recipe,
-                                    action: { viewStore.send(.toggleFavorited(recipe)) },
-                                    favorited: viewStore.favoritedRecipes.contains(recipe)
-                                )
-                        ) {
+                    .padding()
+
+                    ScrollView {
+                        ForEach(viewStore.searchResults) { recipe in
                             VStack(alignment: .leading, spacing: 0) {
                                 VStack(alignment: .leading) {
                                     Spacer()
@@ -79,10 +74,20 @@ struct SearchResultsView: View {
                                 .background(Color(.tertiarySystemBackground))
                             }
                             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            .border(Color.blue)
+                            .onTapGesture { viewStore.send(.updateSelectedRecipe(recipe)) }
                             .padding()
                             .shadow(color: Color.black.opacity(0.3), radius: 20, y: 10)
                         }
+                        
                     }
+                } else {
+                    RecipeLargeView(
+                        recipe: viewStore.selectedRecipe!,
+                        action: { viewStore.send(.toggleFavorited(viewStore.selectedRecipe!)) },
+                        favorited: viewStore.favoritedRecipes.contains(viewStore.selectedRecipe!)
+                    )
+                    .onTapGesture { viewStore.send(.updateSelectedRecipe(nil)) }
                 }
             }
         }
