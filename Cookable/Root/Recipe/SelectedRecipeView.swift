@@ -71,6 +71,22 @@ struct SelectedRecipeView: View {
                     Divider()
                     Text(recipe.description)
                         .foregroundColor(.secondary)
+                    
+                    Divider()
+                    Text("Ingredients")
+                        
+                    LazyVGrid(
+                        columns: [GridItem](repeating: .init(.flexible()), count: 4),
+                        spacing: 20
+                    ) {
+                        ForEach(recipe.ingredients) { ingredient in
+                            IngredientButtonView(ingredient: ingredient, selected: true) {
+                                //
+                            }
+                        }
+                    }
+
+                    
                 }
                 .padding()
                 .frame(maxWidth: .infinity)

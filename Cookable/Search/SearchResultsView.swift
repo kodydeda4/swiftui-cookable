@@ -12,7 +12,7 @@ import ComposableArchitecture
 
 struct SearchResultsView: View {
     let store: Store<Root.State, Root.Action>
-
+    
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
@@ -28,13 +28,34 @@ struct SearchResultsView: View {
                         }
                     }
                     .padding()
-
+                    
                     ScrollView {
                         ForEach(viewStore.searchResults) { recipe in
-                            RecipeView(recipe: recipe, favorited: viewStore.favoritedRecipes.contains(recipe))
-                                .onTapGesture { viewStore.send(.updateSelectedRecipe(recipe)) }
+                            Button(action: { viewStore.send(.updateSelectedRecipe(recipe)) }) {
+                                VStack(alignment: .leading) {
+                                    Color.clear
+                                        .frame(height: 300)
+                                        .overlay(Image(recipe.imageName).resizable().scaledToFill().clipped())
+                                        .clipShape(Rectangle())
+                                    
+                                    Spacer()
+                                    VStack(alignment: .leading) {
+                                        Text(recipe.name)
+                                            .font(.title)
+                                            .fontWeight(.black)
+                                            .foregroundColor(.primary)
+                                        Text(recipe.description.uppercased())
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                            .lineLimit(1)
+                                    }
+                                    .padding()
+                                }
+                                .background(Color(.tertiarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                                .padding()
+                            }
                         }
-                        
                     }
                 } else {
                     SelectedRecipeView(
@@ -48,6 +69,7 @@ struct SearchResultsView: View {
         }
     }
 }
+
 
 struct SearchResultsView_Previews: PreviewProvider {
     static let mockStore = Store(
