@@ -16,7 +16,7 @@ struct RecipeView: View {
             Image(recipe.imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 200)
+                //.frame(height: 200)
                 .clipped()
                 .overlay(
                     RadialGradient(
@@ -73,9 +73,9 @@ struct RecipeView: View {
 //                Spacer()
 //            }
         }
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-        .shadow(radius: 4, y: 4)
+        //.background(Color(.secondarySystemGroupedBackground))
+        //.clipShape(RoundedRectangle(cornerRadius: 10))
+        //.shadow(radius: 4, y: 4)
     }
 }
 struct RecipeView_Previews: PreviewProvider {

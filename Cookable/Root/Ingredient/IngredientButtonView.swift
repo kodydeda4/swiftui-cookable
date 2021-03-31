@@ -23,7 +23,7 @@ struct IngredientButtonView: View {
                 .padding(.horizontal, 8)
                 .padding(.vertical, 6)
         }
-        .background(selected ? Color.accentColor : Color(.secondarySystemGroupedBackground))
+        .background(selected ? Color.accentColor : Color(.gray))
         .clipShape(RoundedRectangle(cornerRadius: 20))
         //.shadow(radius: 1, y: 0.5)
     }

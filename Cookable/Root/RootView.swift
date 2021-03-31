@@ -17,7 +17,8 @@ struct RootView: View {
             TabView {
                 AboutView()
                     .tabItem { Label("About", systemImage: "gear").foregroundColor(.accentColor) }
-                SearchView(store: store)
+                //SearchView(store: store)
+                SearchResultsView(store: store)
                     .tabItem { Label("Search", systemImage: "magnifyingglass").foregroundColor(.accentColor) }
                 FavoritesView(store: store)
                     .tabItem { Label("Favorites", systemImage: "star").foregroundColor(.accentColor) }

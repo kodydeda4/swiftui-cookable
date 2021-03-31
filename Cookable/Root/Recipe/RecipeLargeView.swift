@@ -31,7 +31,7 @@ struct RecipeLargeView: View {
     
     var body: some View {
         GeometryReader { geo in
-            ScrollView {
+            Form {
                 ZStack {
                     Image(recipe.imageName)
                         .resizable()

@@ -25,11 +25,12 @@ struct OnboardingView: View {
                 
                 Text("Welcome to Cookable")
                     .font(.largeTitle)
-                    .fontWeight(.heavy)
+                    .fontWeight(.bold)
                 
-                Text("Cook with what you got")
+                Text("Description about app goes here")
                     .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
+                    .padding(.top, 1)
                 
                 VStack(alignment: .leading) {
                     ForEach([
@@ -59,7 +60,7 @@ struct OnboardingView: View {
                             
                             VStack(alignment: .leading) {
                                 Text(feature.name)
-                                    .font(.title2)
+                                    .font(.title3)
                                     .fontWeight(.semibold)
                                 
                                 Text(feature.description)
@@ -71,6 +72,7 @@ struct OnboardingView: View {
                         .padding(.vertical, 6)
                     }
                 }
+                .padding(.top)
                 .padding()
                 
                 
@@ -79,6 +81,7 @@ struct OnboardingView: View {
                 Text("Kody | Zane | Zach | Robin | Paolo")
                     .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
+                    .padding(.bottom)
                     .font(.caption)
                 
                 Button(action: {
