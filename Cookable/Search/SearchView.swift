@@ -55,26 +55,45 @@ struct SearchResultsView: View {
                                     )
                             ) {
                                 
-                                VStack {
+                                VStack(alignment: .leading) {
+                                    Spacer()
                                     Text(recipe.name)
+                                        .font(.title)
+                                        .bold()
+                                        .padding(.leading)
+                                        .foregroundColor(.white)
+                                        .shadow(radius: 4)
+                                    
+                                    HStack {
+                                        VStack(alignment: .leading) {
+                                            Text(recipe.description)
+                                                .lineLimit(1)
+                                        }
+                                        .foregroundColor(.secondary)
+                                        Spacer()
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    //.background(Color.black.opacity(0.8))
+                                    .background(Color.white)
                                 }
                                 .frame(maxWidth: .infinity, minHeight: 250, maxHeight: 250)
                                 .background(
                                     Image(recipe.imageName)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
-                                    //                                    .overlay(
-                                    //                                        RadialGradient(
-                                    //                                            gradient: Gradient(colors: [.clear, .black]),
-                                    //                                            center: .center,
-                                    //                                            startRadius: 500,
-                                    //                                            endRadius: 800
-                                    //                                        )
-                                    //                                        .opacity(0.6)
-                                    //                                        .blendMode(.darken)
-                                    //                                    )
+                                        .overlay(
+                                            RadialGradient(
+                                                gradient: Gradient(colors: [.clear, .black]),
+                                                center: .center,
+                                                startRadius: 4,
+                                                endRadius: 400
+                                            )
+                                            .opacity(0.4)
+                                            
+                                        )
                                 )
-                                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                                 .padding()
                                 .shadow(color: Color.black.opacity(0.3), radius: 20, y: 10)
                             }
