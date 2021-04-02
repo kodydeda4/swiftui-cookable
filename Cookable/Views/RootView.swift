@@ -21,8 +21,7 @@ struct RootView: View {
                 FavoritesTabView(store: store)
                     .tabItem { Label("Favorites", systemImage: "heart").foregroundColor(.accentColor) }
             }
-            .sheet(isPresented: viewStore.binding(keyPath: \.onboarding, send: Root.Action.keyPath)
-            ) {
+            .sheet(isPresented: viewStore.binding(keyPath: \.onboarding, send: Root.Action.keyPath)) {
                 OnboardingView(store: store)
             }
         }

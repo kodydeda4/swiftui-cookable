@@ -19,6 +19,7 @@
 		335E1EBE2612167F006CCF56 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E1EBD2612167F006CCF56 /* SearchTabView.swift */; };
 		335E1EC2261216B8006CCF56 /* FavoritesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E1EC1261216B8006CCF56 /* FavoritesTabView.swift */; };
 		335E1EC626122207006CCF56 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E1EC526122207006CCF56 /* Recipe.swift */; };
+		33943BD526176B6D008BEB78 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 33943BD426176B6D008BEB78 /* Introspect */; };
 		33A9D670261234A300FA8C05 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9D66F261234A300FA8C05 /* SearchResultsView.swift */; };
 		33A9D6752612485100FA8C05 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9D6742612485100FA8C05 /* RootView.swift */; };
 		33A9D67D261248B200FA8C05 /* IngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9D67C261248B200FA8C05 /* IngredientView.swift */; };
@@ -55,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				335E1EB7261210FA006CCF56 /* ComposableArchitecture in Frameworks */,
+				33943BD526176B6D008BEB78 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +186,7 @@
 			name = Cookable;
 			packageProductDependencies = (
 				335E1EB6261210FA006CCF56 /* ComposableArchitecture */,
+				33943BD426176B6D008BEB78 /* Introspect */,
 			);
 			productName = Cookable;
 			productReference = 333C2B9E25FF76A7008F5139 /* Cookable.app */;
@@ -214,6 +217,7 @@
 			mainGroup = 333C2B9525FF76A7008F5139;
 			packageReferences = (
 				335E1EB5261210FA006CCF56 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				33943BD326176B6D008BEB78 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 333C2B9F25FF76A7008F5139 /* Products */;
 			projectDirPath = "";
@@ -454,6 +458,14 @@
 				minimumVersion = 0.17.0;
 			};
 		};
+		33943BD326176B6D008BEB78 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -461,6 +473,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 335E1EB5261210FA006CCF56 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		33943BD426176B6D008BEB78 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33943BD326176B6D008BEB78 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

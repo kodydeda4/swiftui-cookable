@@ -12,13 +12,9 @@ struct SelectedRecipeView: View {
     let ingredientsList: [Recipe.Ingredient]
     var toggleFavoriteAction: () -> Void
     var toggleSelectedAction: () -> Void
-    
-    
-    
     var favorited: Bool
-    
+
     var body: some View {
-        
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading) {
@@ -71,7 +67,6 @@ struct SelectedRecipeView: View {
             }
         }
         .navigationBarHidden(true)
-        .ignoresSafeArea()
         .gesture(
             DragGesture()
                 .onEnded {

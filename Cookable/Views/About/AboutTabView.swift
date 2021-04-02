@@ -29,7 +29,6 @@ struct AboutTabView: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
             .navigationBarTitle("About")
         }
     }
