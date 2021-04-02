@@ -34,30 +34,31 @@ struct SearchSheetView: View {
                         spacing: 20
                     ) {
                         ForEach(Recipe.Ingredient.allCases) { ingredient in
-                            IngredientButtonView(
-                                ingredient: ingredient,
-                                selected: viewStore.ingredientsList.contains(ingredient)
-                            ) {
-                                viewStore.send(.toggleIngredient(ingredient))
+                            Button(action: { viewStore.send(.toggleIngredient(ingredient)) }) {
+                                IngredientButtonView(
+                                    ingredient: ingredient,
+                                    selected: viewStore.ingredientsList.contains(ingredient)
+                                )
                             }
                         }
                     }
-                }                
-                Spacer()
-                Button(action: {
-                    viewStore.send(.searchButtonTapped)
-                }) {
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(height: 50)
-                        .foregroundColor(viewStore.ingredientsList.isEmpty ? .secondary : .accentColor)
-                        .overlay(Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search").foregroundColor(.white))
                 }
             }
-            .animation(.easeInOut)
-            .padding()
+            Spacer()
+            Button(action: {
+                viewStore.send(.searchButtonTapped)
+            }) {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(height: 50)
+                    .foregroundColor(viewStore.ingredientsList.isEmpty ? .secondary : .accentColor)
+                    .overlay(Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search").foregroundColor(.white))
+            }
         }
+        .animation(.easeInOut)
+        .padding()
     }
 }
+
 
 struct SheetView_Previews: PreviewProvider {
     static var previews: some View {

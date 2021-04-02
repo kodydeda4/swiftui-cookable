@@ -18,7 +18,8 @@ struct Root {
         var alert            : AlertState<Root.Action>?
         var onboarding       = true
         
-        var selectedRecipe:  Recipe?
+        var selectedRecipe:          Recipe?
+        var selectedFavoriteRecipe:  Recipe?
         
         var showingSearchResults: Bool {
             !searchResults.isEmpty && !ingredientsList.isEmpty
@@ -37,6 +38,7 @@ struct Root {
         case clearButtonTapped
         case searchButtonTapped
         case updateSelectedRecipe(Recipe?)
+        case updateSelectedFavoriteRecipe(Recipe?)
     }
     
     struct Environment {
@@ -108,6 +110,10 @@ extension Root {
                 
             case let .updateSelectedRecipe(optional):
                 state.selectedRecipe = optional
+                return .none
+                
+            case let .updateSelectedFavoriteRecipe(optional):
+                state.selectedFavoriteRecipe = optional
                 return .none
             }
         }

@@ -8,8 +8,6 @@
 import SwiftUI
 import ComposableArchitecture
 
-// TODO: Fix tapping out of bounds
-
 struct SearchResultsView: View {
     let store: Store<Root.State, Root.Action>
     
@@ -22,55 +20,22 @@ struct SearchResultsView: View {
                         spacing: 20
                     ) {
                         ForEach(viewStore.ingredientsList) { ingredient in
-                            IngredientButtonView(ingredient: ingredient, selected: true) {
-                                viewStore.send(.toggleIngredient(ingredient))
+                            Button(action: { viewStore.send(.toggleIngredient(ingredient)) }) {
+                                IngredientButtonView(
+                                    ingredient: ingredient,
+                                    selected: true
+                                )
                             }
                         }
                     }
                     .padding()
-                    
                     ScrollView {
                         ForEach(viewStore.searchResults) { recipe in
                             Button(action: { viewStore.send(.updateSelectedRecipe(recipe)) }) {
-                                VStack(alignment: .leading) {
-                                    Color.clear
-                                        .frame(height: 200)
-                                        .overlay(
-                                            Image(recipe.imageName)
-                                                .resizable()
-                                                .scaledToFill()
-                                                .clipped()
-                                        )
-                                        .clipShape(Rectangle())
-                                    
-                                    Spacer()
-                                    VStack(alignment: .leading) {
-                                        Text(recipe.name)
-                                            .font(.title2)
-                                            .bold()
-                                            .foregroundColor(.primary)
-                                        
-                                        Text(recipe.description.uppercased())
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                            .lineLimit(1)
-                                        
-                                        Spacer()
-                                    }
-                                    .padding(.horizontal)
-                                    .padding(.trailing, 6)
-                                    .padding(.vertical, 8)
-                                    
-                                }
-                                .background(Color(.secondarySystemBackground))
-                                .clipShape(RoundedRectangle(cornerRadius: 16))
-                                .padding(.horizontal)
-                                .padding(.vertical, 8)
-                                //                                .shadow(radius: 10)
+                                RecipeView(recipe: recipe)
                             }
                         }
                     }
-                    
                 } else {
                     SelectedRecipeView(
                         recipe: viewStore.selectedRecipe!,

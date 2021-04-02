@@ -7,23 +7,6 @@
 
 import SwiftUI
 
-struct GradientOverlay: View {
-    var body: some View {
-        VStack {
-            LinearGradient(
-                gradient: Gradient(colors: [.black, .clear]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .blendMode(.darken)
-            .opacity(0.8)
-            .frame(height: 150)
-            Spacer()
-        }
-    }
-}
-
-
 struct SelectedRecipeView: View {
     let recipe: Recipe
     var toggleFavoriteAction: () -> Void
@@ -48,18 +31,10 @@ struct SelectedRecipeView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Text(recipe.name)
-                        .font(.title)
-                        .bold()
+                            .font(.title)
+                            .bold()
                         
                         Spacer()
-//                        Button(action: toggleSelectedAction) {
-//                            Image(systemName: "arrowshape.turn.up.backward")
-//                                .resizable()
-//                                .scaledToFit()
-//                                //.foregroundColor(favorited ? .pink : .primary)
-//                                .frame(width: 30, height: 30)
-//                        }
-                        
                         Button(action: toggleFavoriteAction) {
                             Image(systemName: favorited ? "heart.fill" : "heart")
                                 .resizable()
@@ -74,19 +49,15 @@ struct SelectedRecipeView: View {
                     
                     Divider()
                     Text("Ingredients")
-                        
+                    
                     LazyVGrid(
                         columns: [GridItem](repeating: .init(.flexible()), count: 4),
                         spacing: 20
                     ) {
                         ForEach(recipe.ingredients) { ingredient in
-                            IngredientButtonView(ingredient: ingredient, selected: true) {
-                                //
-                            }
+                            IngredientButtonView(ingredient: ingredient, selected: true)
                         }
                     }
-
-                    
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
@@ -95,17 +66,18 @@ struct SelectedRecipeView: View {
         .navigationBarHidden(true)
         .ignoresSafeArea()
         .gesture(
-          DragGesture()
-            .onEnded {
-              if $0.translation.width < -100 {
-                toggleSelectedAction()
-              } else if $0.translation.width > 100 {
-                toggleSelectedAction()
-              }
-          }
+            DragGesture()
+                .onEnded {
+                    if $0.translation.width < -100 {
+                        toggleSelectedAction()
+                    } else if $0.translation.width > 100 {
+                        toggleSelectedAction()
+                    }
+                }
         )
     }
 }
+
 struct SelectedRecipeView_Previews: PreviewProvider {
     static var previews: some View {
         SelectedRecipeView(recipe: Recipe.allRecipes.first!, toggleFavoriteAction: {}, toggleSelectedAction: {}, favorited: false)

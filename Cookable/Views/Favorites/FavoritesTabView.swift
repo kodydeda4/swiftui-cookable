@@ -12,26 +12,55 @@ struct FavoritesTabView: View {
     let store: Store<Root.State, Root.Action>
     
     var body: some View {
-        WithViewStore(store) {viewStore in
+        WithViewStore(store) { viewStore in
             NavigationView {
                 if viewStore.favoritedRecipes.isEmpty {
                     EmptyFavoritesView()
                 } else {
-                    List(viewStore.favoritedRecipes) {
-                        Text($0.name)
-                    }
-//                    ScrollView {
-//                        ForEach(viewStore.favoritedRecipes) { recipe in
-//                            NavigationLink(
-//                                destination: RecipeLargeView(
-//                                    recipe: recipe,
-//                                    action: { viewStore.send(.toggleFavorited(recipe)) },
-//                                    favorited: viewStore.favoritedRecipes.contains(recipe)
-//                                )
+                    VStack {
+                        if viewStore.selectedFavoriteRecipe == nil {
+//                            LazyVGrid(
+//                                columns: [GridItem](repeating: .init(.flexible()), count: 4),
+//                                spacing: 20
 //                            ) {
-//                                RecipeView(recipe: recipe, isFavorited: viewStore.favoritedRecipes.contains(recipe))
+//                                ForEach(viewStore.ingredientsList) { ingredient in
+//                                    Button(action: { viewStore.send(.toggleIngredient(ingredient)) }) {
+//                                        IngredientButtonView(
+//                                            ingredient: ingredient,
+//                                            selected: true
+//                                        )
+//                                    }
+//                                }
 //                            }
 //                            .padding()
+                            ScrollView {
+                                ForEach(viewStore.favoritedRecipes) { recipe in
+                                    Button(action: { viewStore.send(.updateSelectedFavoriteRecipe(recipe)) }) {
+                                        RecipeView(recipe: recipe)
+                                    }
+                                }
+                            }
+                        } else {
+                            SelectedRecipeView(
+                                recipe: viewStore.selectedFavoriteRecipe!,
+                                toggleFavoriteAction: { viewStore.send(.toggleFavorited(viewStore.selectedRecipe!)) },
+                                toggleSelectedAction: { viewStore.send(.updateSelectedFavoriteRecipe(nil)) },
+                                favorited: viewStore.favoritedRecipes.contains(viewStore.selectedFavoriteRecipe!)
+                            )
+                        }
+                    }
+                    .animation(.spring(), value: viewStore.selectedRecipe)
+//                    LazyVGrid(
+//                        columns: [GridItem](repeating: .init(.flexible()), count: 4),
+//                        spacing: 20
+//                    ) {
+//                        ForEach(viewStore.ingredientsList) { ingredient in
+//                            Button(action: { viewStore.send(.toggleIngredient(ingredient)) }) {
+//                                IngredientButtonView(
+//                                    ingredient: ingredient,
+//                                    selected: true
+//                                )
+//                            }
 //                        }
 //                    }
                     .alert(store.scope(state: \.alert), dismiss: .dismissResetAlert)
