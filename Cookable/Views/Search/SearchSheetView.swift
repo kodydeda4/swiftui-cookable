@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SheetView: View {
+struct SearchSheetView: View {
     let store: Store<Root.State, Root.Action>
     
     var body: some View {
@@ -61,6 +61,6 @@ struct SheetView: View {
 
 struct SheetView_Previews: PreviewProvider {
     static var previews: some View {
-        SheetView(store: Root.defaultStore)
+        SearchSheetView(store: Root.defaultStore)
     }
 }

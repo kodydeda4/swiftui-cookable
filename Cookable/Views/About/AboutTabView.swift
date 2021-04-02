@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct AboutView: View {
+struct AboutTabView: View {
     
     var body: some View {
         NavigationView {
@@ -37,6 +37,6 @@ struct AboutView: View {
 
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutView()
+        AboutTabView()
     }
 }

@@ -16,7 +16,6 @@ struct IngredientButtonView: View {
     var body: some View {
         Button(action: action) {
             Text(ingredient.rawValue)
-                //.font(.caption)
                 .foregroundColor(selected ? .white : .secondary)
                 .lineLimit(1)
                 .frame(maxWidth: 90)
@@ -25,7 +24,6 @@ struct IngredientButtonView: View {
         }
         .background(selected ? Color.accentColor : Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20))
-        //.shadow(radius: 1, y: 0.5)
     }
 }
 

@@ -14,12 +14,12 @@ struct RootView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             TabView {
-                AboutView()
+                AboutTabView()
                     .tabItem { Label("About", systemImage: "gear").foregroundColor(.accentColor) }
                 //SearchView(store: store)
-                SearchView(store: store)
+                SearchTabView(store: store)
                     .tabItem { Label("Search", systemImage: "magnifyingglass").foregroundColor(.accentColor) }
-                FavoritesView(store: store)
+                FavoritesTabView(store: store)
                     .tabItem { Label("Favorites", systemImage: "heart").foregroundColor(.accentColor) }
                     
             }

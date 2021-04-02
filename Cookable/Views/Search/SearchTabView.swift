@@ -8,10 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-//      Starts @ 1hr ish
-//      https://www.youtube.com/watch?v=jwWfhM7ZuaI&t=3513s
-
-struct SearchView: View {
+struct SearchTabView: View {
     let store: Store<Root.State, Root.Action>
     
     var body: some View {
@@ -35,7 +32,7 @@ struct SearchView: View {
                     }
                 }
                 .sheet(isPresented: viewStore.binding(keyPath: \.sheet, send: Root.Action.keyPath)) {
-                    SheetView(store: store)
+                    SearchSheetView(store: store)
                 }
             }
         }
@@ -54,8 +51,8 @@ struct SearchView_Previews: PreviewProvider {
         environment:  Root.Environment()
     )
     static var previews: some View {
-        SearchView(store: allRecipesAllIngredientsStore)
-        SearchView(store: Root.defaultStore)
-        SearchView(store: mockStore2)
+        SearchTabView(store: allRecipesAllIngredientsStore)
+        SearchTabView(store: Root.defaultStore)
+        SearchTabView(store: mockStore2)
     }
 }

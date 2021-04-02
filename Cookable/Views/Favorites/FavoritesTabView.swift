@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct FavoritesView: View {
+struct FavoritesTabView: View {
     let store: Store<Root.State, Root.Action>
     
     var body: some View {
@@ -51,6 +51,6 @@ struct FavoritesView: View {
 
 struct FavoritesView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoritesView(store: Root.defaultStore)
+        FavoritesTabView(store: Root.defaultStore)
     }
 }
