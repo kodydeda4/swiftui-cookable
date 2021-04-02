@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct IngredientButtonView: View {
+struct IngredientView: View {
     let ingredient: Recipe.Ingredient
     var selected = false
     
@@ -26,7 +26,7 @@ struct IngredientButtonView: View {
 
 struct AddIngredientView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientButtonView(ingredient: .apple)
+        IngredientView(ingredient: .apple)
     }
 }
 

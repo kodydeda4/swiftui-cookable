@@ -9,12 +9,16 @@ import SwiftUI
 
 struct SelectedRecipeView: View {
     let recipe: Recipe
+    let ingredientsList: [Recipe.Ingredient]
     var toggleFavoriteAction: () -> Void
     var toggleSelectedAction: () -> Void
+    
+    
     
     var favorited: Bool
     
     var body: some View {
+        
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading) {
@@ -54,8 +58,11 @@ struct SelectedRecipeView: View {
                         columns: [GridItem](repeating: .init(.flexible()), count: 4),
                         spacing: 20
                     ) {
-                        ForEach(recipe.ingredients) { ingredient in
-                            IngredientButtonView(ingredient: ingredient, selected: true)
+                        ForEach(recipe.ingredients.filter { ingredientsList.contains($0)  }) { ingredient in
+                            IngredientView(ingredient: ingredient, selected: ingredientsList.contains(ingredient))
+                        }
+                        ForEach(recipe.ingredients.filter { !ingredientsList.contains($0)  }) { ingredient in
+                            IngredientView(ingredient: ingredient, selected: ingredientsList.contains(ingredient))
                         }
                     }
                 }
@@ -80,7 +87,7 @@ struct SelectedRecipeView: View {
 
 struct SelectedRecipeView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedRecipeView(recipe: Recipe.allRecipes.first!, toggleFavoriteAction: {}, toggleSelectedAction: {}, favorited: false)
-        SelectedRecipeView(recipe: Recipe.allRecipes.first!, toggleFavoriteAction: {}, toggleSelectedAction: {}, favorited: true)
+        SelectedRecipeView(recipe: Recipe.allRecipes.first!, ingredientsList: Recipe.Ingredient.allCases, toggleFavoriteAction: {}, toggleSelectedAction: {}, favorited: false)
+        SelectedRecipeView(recipe: Recipe.allRecipes.first!, ingredientsList: Recipe.Ingredient.allCases, toggleFavoriteAction: {}, toggleSelectedAction: {}, favorited: true)
     }
 }

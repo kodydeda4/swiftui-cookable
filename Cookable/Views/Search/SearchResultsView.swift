@@ -21,7 +21,7 @@ struct SearchResultsView: View {
                     ) {
                         ForEach(viewStore.ingredientsList) { ingredient in
                             Button(action: { viewStore.send(.toggleIngredient(ingredient)) }) {
-                                IngredientButtonView(
+                                IngredientView(
                                     ingredient: ingredient,
                                     selected: true
                                 )
@@ -39,6 +39,7 @@ struct SearchResultsView: View {
                 } else {
                     SelectedRecipeView(
                         recipe: viewStore.selectedRecipe!,
+                        ingredientsList: viewStore.ingredientsList,
                         toggleFavoriteAction: { viewStore.send(.toggleFavorited(viewStore.selectedRecipe!)) },
                         toggleSelectedAction: { viewStore.send(.updateSelectedRecipe(nil)) },
                         favorited: viewStore.favoritedRecipes.contains(viewStore.selectedRecipe!)

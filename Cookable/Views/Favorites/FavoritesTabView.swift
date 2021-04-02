@@ -43,6 +43,7 @@ struct FavoritesTabView: View {
                         } else {
                             SelectedRecipeView(
                                 recipe: viewStore.selectedFavoriteRecipe!,
+                                ingredientsList: viewStore.ingredientsList,
                                 toggleFavoriteAction: { viewStore.send(.toggleFavorited(viewStore.selectedRecipe!)) },
                                 toggleSelectedAction: { viewStore.send(.updateSelectedFavoriteRecipe(nil)) },
                                 favorited: viewStore.favoritedRecipes.contains(viewStore.selectedFavoriteRecipe!)

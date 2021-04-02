@@ -35,7 +35,7 @@ struct SearchSheetView: View {
                     ) {
                         ForEach(Recipe.Ingredient.allCases) { ingredient in
                             Button(action: { viewStore.send(.toggleIngredient(ingredient)) }) {
-                                IngredientButtonView(
+                                IngredientView(
                                     ingredient: ingredient,
                                     selected: viewStore.ingredientsList.contains(ingredient)
                                 )
@@ -50,8 +50,12 @@ struct SearchSheetView: View {
             }) {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 50)
-                    .foregroundColor(viewStore.ingredientsList.isEmpty ? .secondary : .accentColor)
-                    .overlay(Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search").foregroundColor(.white))
+                    //.background(selected ? Color.accentColor : Color(.secondarySystemBackground))
+                    .foregroundColor(viewStore.ingredientsList.isEmpty ? Color(.secondarySystemBackground) : .accentColor)
+                    .overlay(Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search").foregroundColor(
+                        viewStore.ingredientsList.isEmpty ? .secondary : .white
+                    )
+                    )
             }
         }
         .animation(.easeInOut)
