@@ -11,6 +11,8 @@ import ComposableArchitecture
 struct AboutTabView: View {
     
     var body: some View {
+        
+        
         NavigationView {
             Form {
                 Section(header: Text("UNCW Fall 2021")) {

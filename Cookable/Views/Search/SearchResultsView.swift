@@ -41,14 +41,13 @@ struct SearchResultsView: View {
 }
 
 struct SearchResultsView_Previews: PreviewProvider {
-//    static let mockStore = Store(
-//        initialState: Root.State(recipeSearchResults: Recipe.allRecipes, ingredientsList: Recipe.Ingredient.allCases),
-//        reducer:      Root.reducer,
-//        environment:  Root.Environment()
-//    )
+    static let mockStore = Store(
+        initialState: Root.State(recipeSearch: Recipe.allRecipes, searchIngredients: Recipe.Ingredient.allCases),
+        reducer:      Root.reducer,
+        environment:  Root.Environment()
+    )
     static var previews: some View {
-//        SearchResultsView(store: mockStore)
-        SearchResultsView(store: Root.defaultStore)
+        SearchResultsView(store: mockStore)
     }
 }
  

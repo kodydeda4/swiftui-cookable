@@ -40,19 +40,19 @@ struct SearchTabView: View {
 }
        
 struct SearchView_Previews: PreviewProvider {
-//    static let allRecipesAllIngredientsStore = Store(
-//        initialState: Root.State(recipeSearchResults: Recipe.allRecipes, ingredientsList: Recipe.Ingredient.allCases),
-//        reducer:      Root.reducer,
-//        environment:  Root.Environment()
-//    )
+    static let mockStore1 = Store(
+        initialState: Root.State(recipeSearch: Recipe.allRecipes, searchIngredients: Recipe.Ingredient.allCases),
+        reducer:      Root.reducer,
+        environment:  Root.Environment()
+    )
     static let mockStore2 = Store(
         initialState: Root.State(searchIngredients: Recipe.Ingredient.allCases),
         reducer:      Root.reducer,
         environment:  Root.Environment()
     )
     static var previews: some View {
-//        SearchTabView(store: allRecipesAllIngredientsStore)
         SearchTabView(store: Root.defaultStore)
+        SearchTabView(store: mockStore1)
         SearchTabView(store: mockStore2)
     }
 }
