@@ -26,7 +26,7 @@ struct SelectedRecipeView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Text(recipe.name)
-                            .font(.title)
+                            .font(.largeTitle)
                             .bold()
                         
                         Spacer()
@@ -74,7 +74,9 @@ struct SelectedRecipeView: View {
                         VStack(alignment: .leading) {
                             Text("Step \(index+1)")
                                 .font(.headline)
+                            
                             Text("\(step)")
+                                .foregroundColor(.secondary)
                         }
                         .padding(.vertical)
                     }

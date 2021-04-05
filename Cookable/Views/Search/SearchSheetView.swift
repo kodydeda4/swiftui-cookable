@@ -50,11 +50,10 @@ struct SearchSheetView: View {
             }) {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 50)
-                    //.background(selected ? Color.accentColor : Color(.secondarySystemBackground))
                     .foregroundColor(viewStore.searchIngredients.isEmpty ? Color(.secondarySystemBackground) : .accentColor)
-                    .overlay(Text(viewStore.searchIngredients.isEmpty ? "Cancel" : "Search").foregroundColor(
-                        viewStore.searchIngredients.isEmpty ? .secondary : .white
-                    )
+                    .overlay(
+                        Text(viewStore.searchIngredients.isEmpty ? "Cancel" : "Search")
+                            .foregroundColor(viewStore.searchIngredients.isEmpty ? .secondary : .white)
                     )
             }
         }

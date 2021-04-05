@@ -55,6 +55,7 @@ struct RecipeView: View {
                     Spacer()
                     Text("Read More")
                         .foregroundColor(.accentColor)
+                        .padding(.top, 2)
                 }
             }
             .padding(.horizontal)
