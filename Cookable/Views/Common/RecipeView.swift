@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeView: View {
     var recipe: Recipe
+    var favorited = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,6 +22,23 @@ struct RecipeView: View {
                         .clipped()
                 )
                 .clipShape(Rectangle())
+                .overlay(
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "heart.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.pink)
+                                .frame(width: 30, height: 30)
+                                .opacity(favorited ? 1 : 0)
+                            
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                    .shadow(radius: 3)
+                )
             
             Spacer()
             VStack(alignment: .leading) {
@@ -29,12 +47,15 @@ struct RecipeView: View {
                     .bold()
                     .foregroundColor(.primary)
                 
-                Text(recipe.description.uppercased())
-                    .font(.caption)
+                Text(recipe.description)
                     .foregroundColor(.secondary)
-                    .lineLimit(1)
+                    .lineLimit(2)
                 
-                Spacer()
+                HStack {
+                    Spacer()
+                    Text("Read More")
+                        .foregroundColor(.accentColor)
+                }
             }
             .padding(.horizontal)
             .padding(.trailing, 6)

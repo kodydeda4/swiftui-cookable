@@ -31,7 +31,7 @@ struct SearchResultsView: View {
                 ScrollView {
                     ForEach(viewStore.searchResults) { recipe in
                         NavigationLink(destination: SelectedRecipeView(store: store, recipe: recipe)) {
-                            RecipeView(recipe: recipe)
+                            RecipeView(recipe: recipe, favorited: viewStore.favoritedRecipes.contains(recipe))
                         }
                     }
                 }
