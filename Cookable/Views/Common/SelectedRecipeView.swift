@@ -44,6 +44,8 @@ struct SelectedRecipeView: View {
                     
                     Divider()
                     Text("Ingredients")
+                        .font(.title2)
+                        .bold()
                     
                     LazyVGrid(
                         columns: [GridItem](repeating: .init(.flexible()), count: 4),
@@ -62,14 +64,26 @@ struct SelectedRecipeView: View {
                             )
                         }
                     }
+                    
+                    Divider()
+                    Text("Instructions")
+                        .font(.title2)
+                        .bold()
+
+                    ForEach(Array(zip(recipe.steps.indices, recipe.steps)), id: \.0) { index, step in
+                        VStack(alignment: .leading) {
+                            Text("Step \(index+1)")
+                                .font(.headline)
+                            Text("\(step)")
+                        }
+                        .padding(.vertical)
+                    }
                 }
                 .padding()
             }
         }
     }
 }
-
-
 
 struct SelectedRecipeView_Previews: PreviewProvider {
     static var previews: some View {

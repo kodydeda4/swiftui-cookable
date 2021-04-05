@@ -14,7 +14,7 @@ struct Recipe: Equatable, Identifiable {
     var description: String
     var ingredients: [Ingredient]
     var imageName: String
-    var favorite = false
+    var steps: [String]
     
     enum Ingredient: String, Identifiable, CaseIterable {
         var id: Ingredient { self }
@@ -34,19 +34,24 @@ struct Recipe: Equatable, Identifiable {
         case bananna
         case pear
         case fig
+        
+        case butter
+        case flour
+        case cinnamon
+        case nutmeg
+        case lemonZest
+        case lemonJuice
+        case sugar
+        case milk
     }
 }
 
 extension Recipe {
     static var allRecipes: [Recipe] {
         [
-            Recipe(name: "Apple Pie",
-                   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                   ingredients: [.apple], imageName: "apple_pie"),
-            
-            
-            Recipe(name: "Banna Pudding", description: "Description of bannana pudding", ingredients: [.bananna], imageName: "bananna_pudding"),
-            Recipe(name: "Fruit Salad", description: "Description of fruit salad", ingredients: [.apple, .bananna, .orange], imageName: "fruit_salad"),
+            Recipe.applePie,
+            Recipe.banannaPudding,
+            Recipe.fruitSalad
         ]
     }
 }
