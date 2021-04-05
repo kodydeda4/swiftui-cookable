@@ -11,6 +11,7 @@
 		331E1C72261B4C70003A833E /* applePie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E1C71261B4C70003A833E /* applePie.swift */; };
 		331E1C75261B4D9E003A833E /* banannaPudding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E1C74261B4D9E003A833E /* banannaPudding.swift */; };
 		331E1C78261B4DAD003A833E /* fruitSalad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E1C77261B4DAD003A833E /* fruitSalad.swift */; };
+		331E1C7C261B5207003A833E /* chickenDinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E1C7B261B5207003A833E /* chickenDinner.swift */; };
 		3324515D26134A8600C37C17 /* SelectedRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324515C26134A8600C37C17 /* SelectedRecipeView.swift */; };
 		332C3AD726137847001DBA75 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C3AD626137847001DBA75 /* OnboardingView.swift */; };
 		333C2BA225FF76A7008F5139 /* CookableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C2BA125FF76A7008F5139 /* CookableApp.swift */; };
@@ -36,6 +37,7 @@
 		331E1C71261B4C70003A833E /* applePie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = applePie.swift; sourceTree = "<group>"; };
 		331E1C74261B4D9E003A833E /* banannaPudding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = banannaPudding.swift; sourceTree = "<group>"; };
 		331E1C77261B4DAD003A833E /* fruitSalad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fruitSalad.swift; sourceTree = "<group>"; };
+		331E1C7B261B5207003A833E /* chickenDinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chickenDinner.swift; sourceTree = "<group>"; };
 		3324515C26134A8600C37C17 /* SelectedRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRecipeView.swift; sourceTree = "<group>"; };
 		332C3AD626137847001DBA75 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		333C2B9E25FF76A7008F5139 /* Cookable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,7 @@
 				331E1C71261B4C70003A833E /* applePie.swift */,
 				331E1C74261B4D9E003A833E /* banannaPudding.swift */,
 				331E1C77261B4DAD003A833E /* fruitSalad.swift */,
+				331E1C7B261B5207003A833E /* chickenDinner.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				333C2BA425FF76A7008F5139 /* Root.swift in Sources */,
 				331E1C78261B4DAD003A833E /* fruitSalad.swift in Sources */,
 				335E1EC626122207006CCF56 /* Recipe.swift in Sources */,
+				331E1C7C261B5207003A833E /* chickenDinner.swift in Sources */,
 				33A9D68726124B8200FA8C05 /* SearchSheetView.swift in Sources */,
 				33A9D67D261248B200FA8C05 /* IngredientView.swift in Sources */,
 				33A9D6752612485100FA8C05 /* RootView.swift in Sources */,

@@ -43,15 +43,24 @@ struct Recipe: Equatable, Identifiable {
         case lemonJuice
         case sugar
         case milk
+        
+        case salt
+        case eggs
+        case vanilla
+        
+        case oliveOil
+        case pepper
+        case rosemary
     }
 }
 
 extension Recipe {
     static var allRecipes: [Recipe] {
         [
-            Recipe.applePie,
-            Recipe.banannaPudding,
-            Recipe.fruitSalad
+            applePie,
+            banannaPudding,
+            fruitSalad,
+            chickenDinner
         ]
     }
 }
