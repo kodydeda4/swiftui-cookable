@@ -20,9 +20,9 @@ struct SearchSheetView: View {
                         .bold()
                     
                     Spacer()
-                    Button(action: { viewStore.send(.clearButtonTapped) }) {
+                    Button(action: { viewStore.send(.searchSheetClearAllButtonTapped) }) {
                         Text("Clear All")
-                            .disabled(viewStore.ingredientsList.isEmpty)
+                            .disabled(viewStore.searchIngredients.isEmpty)
                     }
                 }
                 Divider()
@@ -34,10 +34,10 @@ struct SearchSheetView: View {
                         spacing: 20
                     ) {
                         ForEach(Recipe.Ingredient.allCases) { ingredient in
-                            Button(action: { viewStore.send(.toggleIngredient(ingredient)) }) {
+                            Button(action: { viewStore.send(.toggleSearchSheetIngredient(ingredient)) }) {
                                 IngredientView(
                                     ingredient: ingredient,
-                                    selected: viewStore.ingredientsList.contains(ingredient)
+                                    selected: viewStore.searchIngredients.contains(ingredient)
                                 )
                             }
                         }
@@ -46,14 +46,14 @@ struct SearchSheetView: View {
             }
             Spacer()
             Button(action: {
-                viewStore.send(.searchButtonTapped)
+                viewStore.send(.searchSheetSearchButtonTapped)
             }) {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 50)
                     //.background(selected ? Color.accentColor : Color(.secondarySystemBackground))
-                    .foregroundColor(viewStore.ingredientsList.isEmpty ? Color(.secondarySystemBackground) : .accentColor)
-                    .overlay(Text(viewStore.ingredientsList.isEmpty ? "Cancel" : "Search").foregroundColor(
-                        viewStore.ingredientsList.isEmpty ? .secondary : .white
+                    .foregroundColor(viewStore.searchIngredients.isEmpty ? Color(.secondarySystemBackground) : .accentColor)
+                    .overlay(Text(viewStore.searchIngredients.isEmpty ? "Cancel" : "Search").foregroundColor(
+                        viewStore.searchIngredients.isEmpty ? .secondary : .white
                     )
                     )
             }

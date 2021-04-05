@@ -30,11 +30,11 @@ struct SelectedRecipeView: View {
                             .bold()
                         
                         Spacer()
-                        Button(action: { viewStore.send(.toggleFavorited(recipe)) }) {
-                            Image(systemName: viewStore.favoritedRecipes.contains(recipe) ? "heart.fill" : "heart")
+                        Button(action: { viewStore.send(.toggleFavoritedRecipe(recipe)) }) {
+                            Image(systemName: viewStore.recipeFavorites.contains(recipe) ? "heart.fill" : "heart")
                                 .resizable()
                                 .scaledToFit()
-                                .foregroundColor(viewStore.favoritedRecipes.contains(recipe) ? .pink : .primary)
+                                .foregroundColor(viewStore.recipeFavorites.contains(recipe) ? .pink : .primary)
                                 .frame(width: 30, height: 30)
                         }
                     }
@@ -51,16 +51,16 @@ struct SelectedRecipeView: View {
                         columns: [GridItem](repeating: .init(.flexible()), count: 4),
                         spacing: 20
                     ) {
-                        ForEach(recipe.ingredients.filter { viewStore.ingredientsList.contains($0) }) { ingredient in
+                        ForEach(recipe.ingredients.filter { viewStore.searchIngredients.contains($0) }) { ingredient in
                             IngredientView(
                                 ingredient: ingredient,
-                                selected: viewStore.ingredientsList.contains(ingredient)
+                                selected: viewStore.searchIngredients.contains(ingredient)
                             )
                         }
-                        ForEach(recipe.ingredients.filter { !viewStore.ingredientsList.contains($0)  }) { ingredient in
+                        ForEach(recipe.ingredients.filter { !viewStore.searchIngredients.contains($0)  }) { ingredient in
                             IngredientView(
                                 ingredient: ingredient,
-                                selected: viewStore.ingredientsList.contains(ingredient)
+                                selected: viewStore.searchIngredients.contains(ingredient)
                             )
                         }
                     }

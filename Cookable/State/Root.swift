@@ -10,48 +10,55 @@ import ComposableArchitecture
 
 struct Root {
     struct State: Equatable {
-        var recipes          : [Recipe] = Recipe.allRecipes
-        var searchResults    : [Recipe] = []
-        var favoritedRecipes : [Recipe] = []
-        var ingredientsList  : [Recipe.Ingredient] = []
-        var sheet            = false
-        var alert            : AlertState<Root.Action>?
-        var onboarding       = true
-        var showingSearchResults: Bool {
-            !searchResults.isEmpty && !ingredientsList.isEmpty
-        }
+        var recipeList        : [Recipe] = Recipe.allRecipes
+        var recipeSearch      : [Recipe] = []
+        var recipeFavorites   : [Recipe] = []
+        var searchIngredients : [Recipe.Ingredient] = []
+        var onboarding        = true
+        var sheet             = false
+        var alert             : AlertState<Root.Action>?
+        var isSearching       : Bool { !(recipeSearch.isEmpty && searchIngredients.isEmpty) }
     }
     
     enum Action: Equatable {
-        case toggleFavorited(Recipe)
-        case toggleIngredient(Recipe.Ingredient)
-        case toggleSheet
-        case toggleOnboaring
-        case keyPath(BindingAction<Root.State>)
-        case clearFavoritesButtonTapped
-        case clearFavorites
-        case dismissResetAlert
-        case clearButtonTapped
-        case searchButtonTapped
+        // General
+        case onAppear
         case save
         case load
-        case onAppear
+        case keyPath(BindingAction<Root.State>)
+        
+        // Onboarding
+        case toggleOnboaring
+        
+        // SearchSheet
+        case toggleSearchSheet
+        case toggleSearchSheetIngredient(Recipe.Ingredient)
+        case searchSheetSearchButtonTapped
+        case searchSheetClearAllButtonTapped
+        
+        // Favorites
+        case toggleFavoritedRecipe(Recipe)
+        case clearFavoritesAlert
+        case clearFavoritesAlertDismissed
+        case clearFavoritesAlertConfirmed
+        
+        // SearchSheet
     }
     
     struct Environment {
-        var stateURL: URL {
+        var recipeFavoritesURL: URL {
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 .appendingPathComponent("state")
         }
         
-        func writeState<State>(_ state: State) -> Result<Bool, Error> where State: Codable {
+        func writeRecipeFavorites<State>(_ state: State) -> Result<Bool, Error> where State: Codable {
             let startDate = Date()
             
-            print("writeState: to: '\(stateURL)'")
+            print("writeState: to: '\(recipeFavoritesURL)'")
             do {
                 try JSONEncoder()
                     .encode(state)
-                    .write(to: stateURL)
+                    .write(to: recipeFavoritesURL)
                 
                 print("\(Date()) elapsed: '\(startDate.timeIntervalSinceNow * -1000) ms'")
                 return .success(true)
@@ -60,9 +67,9 @@ struct Root {
             }
         }
         
-        func decodeState<State>(_ type: State.Type) -> Result<State, Error> where State: Codable {
+        func loadRecipeFavorites<State>(_ type: State.Type) -> Result<State, Error> where State: Codable {
             do {
-                let decoded = try JSONDecoder().decode(type.self, from: Data(contentsOf: stateURL))
+                let decoded = try JSONDecoder().decode(type.self, from: Data(contentsOf: recipeFavoritesURL))
                 return .success(decoded)
             }
             catch {
@@ -76,79 +83,85 @@ extension Root {
     static let reducer = Reducer<State, Action, Environment>.combine(
         Reducer { state, action, environment in
             switch action {
-            case .keyPath:
-                return .none
                 
+            // General
             case .onAppear:
                 print("appeared")
                 return Effect(value: .load)
                 
             case .save:
-                let _ = environment.writeState(state.favoritedRecipes)
+                let _ = environment.writeRecipeFavorites(state.recipeFavorites)
                 return .none
                 
             case .load:
-                switch environment.decodeState([Recipe].self) {
+                switch environment.loadRecipeFavorites([Recipe].self) {
                 case let .success(decodedState):
-                    state.favoritedRecipes = decodedState
+                    state.recipeFavorites = decodedState
                 case .failure(_):
                     print("failed to load")
                 }
                 return .none
-
-            case let .toggleFavorited(recipe):
-                switch state.favoritedRecipes.contains(recipe) {
-                case true:
-                    state.favoritedRecipes = state.favoritedRecipes.filter { $0 != recipe }
-                case false:
-                    state.favoritedRecipes.append(recipe)
-                }
-                return Effect(value: .save)
                 
-            case let .toggleIngredient(ingredient):
-                switch state.ingredientsList.contains(ingredient) {
+            case .keyPath:
+                return .none
+
+            // Onboarding
+            case .toggleOnboaring:
+                state.onboarding.toggle()
+                return .none
+
+            // SearchSheet
+            case .toggleSearchSheet:
+                state.sheet.toggle()
+                return .none
+
+            case let .toggleSearchSheetIngredient(ingredient):
+                switch state.searchIngredients.contains(ingredient) {
                 case true:
-                    state.ingredientsList = state.ingredientsList.filter { $0 != ingredient }
+                    state.searchIngredients = state.searchIngredients.filter { $0 != ingredient }
                 case false:
-                    state.ingredientsList.append(ingredient)
+                    state.searchIngredients.append(ingredient)
                 }
                 return .none
-                    
-            case .searchButtonTapped:
-                state.searchResults = state.recipes.filter { recipe in
-                    let sharedIngredients = recipe.ingredients.filter { state.ingredientsList.contains($0) }
+
+            case .searchSheetClearAllButtonTapped:
+                state.searchIngredients = []
+                return .none
+                
+            case .searchSheetSearchButtonTapped:
+                state.recipeSearch = state.recipeList.filter { recipe in
+                    let sharedIngredients = recipe.ingredients.filter { state.searchIngredients.contains($0) }
                     
                     return sharedIngredients.count > 0
                 }
-                return Effect(value: .toggleSheet)
+                return Effect(value: .toggleSearchSheet)
+
+
+            // Favorites
+            case let .toggleFavoritedRecipe(recipe):
+                switch state.recipeFavorites.contains(recipe) {
+                case true:
+                    state.recipeFavorites = state.recipeFavorites.filter { $0 != recipe }
+                case false:
+                    state.recipeFavorites.append(recipe)
+                }
+                return Effect(value: .save)
                 
-            case .toggleSheet:
-                state.sheet.toggle()
-                return .none
-                
-            case .clearButtonTapped:
-                state.ingredientsList = []
-                return .none
-                
-            case .clearFavorites:
-                state.favoritedRecipes = []
-                return .none
-                
-            case .clearFavoritesButtonTapped:
+            case .clearFavoritesAlert:
                 state.alert = .init(
                     title: TextState("Clear Favorites?"),
                     message: TextState("You cannot undo this action."),
-                    primaryButton: .destructive(TextState("Confirm"), send: .clearFavorites),
+                    primaryButton: .destructive(TextState("Confirm"), send: .clearFavoritesAlertConfirmed),
                     secondaryButton: .cancel()
                 )
                 return .none
-                
-            case .dismissResetAlert:
+
+            case .clearFavoritesAlertDismissed:
                 state.alert = nil
                 return .none
 
-            case .toggleOnboaring:
-                state.onboarding.toggle()
+            case .clearFavoritesAlertConfirmed:
+                state.recipeFavorites = []
                 return .none
             }
         }

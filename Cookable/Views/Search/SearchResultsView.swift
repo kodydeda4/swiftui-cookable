@@ -18,8 +18,8 @@ struct SearchResultsView: View {
                     columns: [GridItem](repeating: .init(.flexible()), count: 4),
                     spacing: 20
                 ) {
-                    ForEach(viewStore.ingredientsList) { ingredient in
-                        Button(action: { viewStore.send(.toggleIngredient(ingredient)) }) {
+                    ForEach(viewStore.searchIngredients) { ingredient in
+                        Button(action: { viewStore.send(.toggleSearchSheetIngredient(ingredient)) }) {
                             IngredientView(
                                 ingredient: ingredient,
                                 selected: true
@@ -29,9 +29,9 @@ struct SearchResultsView: View {
                 }
                 .padding()
                 ScrollView {
-                    ForEach(viewStore.searchResults) { recipe in
+                    ForEach(viewStore.recipeSearch) { recipe in
                         NavigationLink(destination: SelectedRecipeView(store: store, recipe: recipe)) {
-                            RecipeView(recipe: recipe, favorited: viewStore.favoritedRecipes.contains(recipe))
+                            RecipeView(recipe: recipe, favorited: viewStore.recipeFavorites.contains(recipe))
                         }
                     }
                 }
@@ -41,13 +41,13 @@ struct SearchResultsView: View {
 }
 
 struct SearchResultsView_Previews: PreviewProvider {
-    static let mockStore = Store(
-        initialState: Root.State(searchResults: Recipe.allRecipes, ingredientsList: Recipe.Ingredient.allCases),
-        reducer:      Root.reducer,
-        environment:  Root.Environment()
-    )
+//    static let mockStore = Store(
+//        initialState: Root.State(recipeSearchResults: Recipe.allRecipes, ingredientsList: Recipe.Ingredient.allCases),
+//        reducer:      Root.reducer,
+//        environment:  Root.Environment()
+//    )
     static var previews: some View {
-        SearchResultsView(store: mockStore)
+//        SearchResultsView(store: mockStore)
         SearchResultsView(store: Root.defaultStore)
     }
 }

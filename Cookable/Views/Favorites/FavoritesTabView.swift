@@ -14,22 +14,22 @@ struct FavoritesTabView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                if viewStore.favoritedRecipes.isEmpty {
+                if viewStore.recipeFavorites.isEmpty {
                     EmptyFavoritesView()
                 } else {
                     ScrollView {
-                        ForEach(viewStore.favoritedRecipes) { recipe in
+                        ForEach(viewStore.recipeFavorites) { recipe in
                             NavigationLink(destination: SelectedRecipeView(store: store, recipe: recipe)) {
-                                RecipeView(recipe: recipe, favorited: viewStore.favoritedRecipes.contains(recipe))
+                                RecipeView(recipe: recipe, favorited: viewStore.recipeFavorites.contains(recipe))
                             }
                         }
                     }
-                    .alert(store.scope(state: \.alert), dismiss: .dismissResetAlert)
+                    .alert(store.scope(state: \.alert), dismiss: .clearFavoritesAlertDismissed)
                     .navigationBarTitle("Favorites")
                     .toolbar {
                         ToolbarItem {
                             Button("Clear All") {
-                                viewStore.send(.clearFavoritesButtonTapped)
+                                viewStore.send(.clearFavoritesAlertConfirmed)
                             }
                         }
                     }
