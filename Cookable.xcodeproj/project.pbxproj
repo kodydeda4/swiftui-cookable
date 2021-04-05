@@ -103,7 +103,6 @@
 		333C2BA025FF76A7008F5139 /* Cookable */ = {
 			isa = PBXGroup;
 			children = (
-				331E1C70261B4C5C003A833E /* Recipes */,
 				333C2BA125FF76A7008F5139 /* CookableApp.swift */,
 				33D405C5261751720098295C /* State */,
 				33D405C6261751AB0098295C /* Model */,
@@ -186,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				335E1EC526122207006CCF56 /* Recipe.swift */,
+				331E1C70261B4C5C003A833E /* Recipes */,
 			);
 			path = Model;
 			sourceTree = "<group>";
