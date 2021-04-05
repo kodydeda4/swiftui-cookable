@@ -21,6 +21,9 @@ struct RootView: View {
                 FavoritesTabView(store: store)
                     .tabItem { Label("Favorites", systemImage: "heart").foregroundColor(.accentColor) }
             }
+            .introspectTabBarController { (UITabBarController) in
+                UITabBarController.tabBar.isHidden = false
+            }
             .sheet(isPresented: viewStore.binding(keyPath: \.onboarding, send: Root.Action.keyPath)) {
                 OnboardingView(store: store)
             }

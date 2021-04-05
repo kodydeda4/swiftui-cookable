@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		331E1C6E261B49C0003A833E /* FancyScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 331E1C6D261B49C0003A833E /* FancyScrollView */; };
 		3324515D26134A8600C37C17 /* SelectedRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324515C26134A8600C37C17 /* SelectedRecipeView.swift */; };
 		332C3AD726137847001DBA75 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C3AD626137847001DBA75 /* OnboardingView.swift */; };
 		333C2BA225FF76A7008F5139 /* CookableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C2BA125FF76A7008F5139 /* CookableApp.swift */; };
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				331E1C6E261B49C0003A833E /* FancyScrollView in Frameworks */,
 				335E1EB7261210FA006CCF56 /* ComposableArchitecture in Frameworks */,
 				33943BD526176B6D008BEB78 /* Introspect in Frameworks */,
 			);
@@ -187,6 +189,7 @@
 			packageProductDependencies = (
 				335E1EB6261210FA006CCF56 /* ComposableArchitecture */,
 				33943BD426176B6D008BEB78 /* Introspect */,
+				331E1C6D261B49C0003A833E /* FancyScrollView */,
 			);
 			productName = Cookable;
 			productReference = 333C2B9E25FF76A7008F5139 /* Cookable.app */;
@@ -218,6 +221,7 @@
 			packageReferences = (
 				335E1EB5261210FA006CCF56 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				33943BD326176B6D008BEB78 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				331E1C6C261B49C0003A833E /* XCRemoteSwiftPackageReference "FancyScrollView" */,
 			);
 			productRefGroup = 333C2B9F25FF76A7008F5139 /* Products */;
 			projectDirPath = "";
@@ -450,6 +454,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		331E1C6C261B49C0003A833E /* XCRemoteSwiftPackageReference "FancyScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nerdsupremacist/FancyScrollView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 		335E1EB5261210FA006CCF56 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -469,6 +481,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		331E1C6D261B49C0003A833E /* FancyScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 331E1C6C261B49C0003A833E /* XCRemoteSwiftPackageReference "FancyScrollView" */;
+			productName = FancyScrollView;
+		};
 		335E1EB6261210FA006CCF56 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 335E1EB5261210FA006CCF56 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

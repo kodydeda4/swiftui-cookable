@@ -17,21 +17,19 @@ struct FavoritesTabView: View {
                 if viewStore.favoritedRecipes.isEmpty {
                     EmptyFavoritesView()
                 } else {
-                    VStack {
-                        ScrollView {
-                            ForEach(viewStore.favoritedRecipes) { recipe in
-                                Button(action: {}) {
-                                    RecipeView(recipe: recipe)
-                                }
+                    ScrollView {
+                        ForEach(viewStore.favoritedRecipes) { recipe in
+                            NavigationLink(destination: SelectedRecipeView(store: store, recipe: recipe)) {
+                                RecipeView(recipe: recipe)
                             }
                         }
-                        .alert(store.scope(state: \.alert), dismiss: .dismissResetAlert)
-                        .navigationBarTitle("Favorites")
-                        .toolbar {
-                            ToolbarItem {
-                                Button("Clear All") {
-                                    viewStore.send(.clearFavoritesButtonTapped)
-                                }
+                    }
+                    .alert(store.scope(state: \.alert), dismiss: .dismissResetAlert)
+                    .navigationBarTitle("Favorites")
+                    .toolbar {
+                        ToolbarItem {
+                            Button("Clear All") {
+                                viewStore.send(.clearFavoritesButtonTapped)
                             }
                         }
                     }
