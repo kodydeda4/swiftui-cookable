@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Recipe: Equatable, Identifiable {
+struct Recipe: Codable, Equatable, Identifiable {
     var id: String { self.name }
     
     var name: String
@@ -16,7 +16,7 @@ struct Recipe: Equatable, Identifiable {
     var imageName: String
     var steps: [String]
     
-    enum Ingredient: String, Identifiable, CaseIterable {
+    enum Ingredient: String, Codable, Identifiable, CaseIterable {
         var id: Ingredient { self }
         case chicken
         case beef

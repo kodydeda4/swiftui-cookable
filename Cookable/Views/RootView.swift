@@ -27,6 +27,9 @@ struct RootView: View {
             .sheet(isPresented: viewStore.binding(keyPath: \.onboarding, send: Root.Action.keyPath)) {
                 OnboardingView(store: store)
             }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
 }

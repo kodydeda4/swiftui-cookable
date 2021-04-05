@@ -33,10 +33,42 @@ struct Root {
         case dismissResetAlert
         case clearButtonTapped
         case searchButtonTapped
+        case save
+        case load
+        case onAppear
     }
     
     struct Environment {
-        // environment
+        var stateURL: URL {
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                .appendingPathComponent("state")
+        }
+        
+        func writeState<State>(_ state: State) -> Result<Bool, Error> where State: Codable {
+            let startDate = Date()
+            
+            print("writeState: to: '\(stateURL)'")
+            do {
+                try JSONEncoder()
+                    .encode(state)
+                    .write(to: stateURL)
+                
+                print("\(Date()) elapsed: '\(startDate.timeIntervalSinceNow * -1000) ms'")
+                return .success(true)
+            } catch {
+                return .failure(error)
+            }
+        }
+        
+        func decodeState<State>(_ type: State.Type) -> Result<State, Error> where State: Codable {
+            do {
+                let decoded = try JSONDecoder().decode(type.self, from: Data(contentsOf: stateURL))
+                return .success(decoded)
+            }
+            catch {
+                return .failure(error)
+            }
+        }
     }
 }
 
@@ -46,6 +78,23 @@ extension Root {
             switch action {
             case .keyPath:
                 return .none
+                
+            case .onAppear:
+                print("appeared")
+                return Effect(value: .load)
+                
+            case .save:
+                let _ = environment.writeState(state.favoritedRecipes)
+                return .none
+                
+            case .load:
+                switch environment.decodeState([Recipe].self) {
+                case let .success(decodedState):
+                    state.favoritedRecipes = decodedState
+                case .failure(_):
+                    print("failed to load")
+                }
+                return .none
 
             case let .toggleFavorited(recipe):
                 switch state.favoritedRecipes.contains(recipe) {
@@ -54,7 +103,7 @@ extension Root {
                 case false:
                     state.favoritedRecipes.append(recipe)
                 }
-                return .none
+                return Effect(value: .save)
                 
             case let .toggleIngredient(ingredient):
                 switch state.ingredientsList.contains(ingredient) {
