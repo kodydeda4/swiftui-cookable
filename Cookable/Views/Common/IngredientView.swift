@@ -13,7 +13,7 @@ struct IngredientView: View {
     var selected = false
     
     var body: some View {
-        Text(ingredient.rawValue)
+        Text(ingredient.description)
             .foregroundColor(selected ? .white : .secondary)
             .lineLimit(1)
             .frame(maxWidth: 90)

@@ -43,5 +43,12 @@ extension Recipe {
         case oliveOil
         case pepper
         case rosemary
+        
+        var description: String {
+            rawValue.seperateUppercaseCharacters.lowercased()
+        }
     }
 }
+
+
+
