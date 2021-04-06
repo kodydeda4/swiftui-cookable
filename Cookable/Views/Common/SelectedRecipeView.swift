@@ -68,7 +68,7 @@ struct SelectedRecipeView: View {
                         .font(.title2)
                         .bold()
                     
-                    ForEach(Array(zip(recipe.steps.indices, recipe.steps)), id: \.0) { index, step in
+                    ForEach(Array(zip(recipe.instructions.indices, recipe.instructions)), id: \.0) { index, step in
                         VStack(alignment: .leading) {
                             Text("Step \(index+1)")
                                 .font(.headline)

@@ -14,7 +14,7 @@ extension Recipe {
         description: "In a hurry? Make this fruit salad in about 10 minutes. You can add or subtract different fruit according to your taste and what is in season.",
         ingredients: [.apple,.orange,.bananna],
         imageName: "fruit_salad",
-        steps: [
+        instructions: [
             "In a large bowl, combine the strawberries, grapes, kiwis, and bananas. Gently mix in peaches. Chill for 1 hour before serving.",
         ]
     )

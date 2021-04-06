@@ -14,44 +14,7 @@ struct Recipe: Codable, Equatable, Identifiable {
     var description: String
     var ingredients: [Ingredient]
     var imageName: String
-    var steps: [String]
-    
-    enum Ingredient: String, Codable, Identifiable, CaseIterable {
-        var id: Ingredient { self }
-        case chicken
-        case beef
-        case fish
-        case shrimp
-        
-        case cheese
-        case pasta
-        case potatoes
-        case spaghetti
-        case soup
-        
-        case apple
-        case orange
-        case bananna
-        case pear
-        case fig
-        
-        case butter
-        case flour
-        case cinnamon
-        case nutmeg
-        case lemonZest
-        case lemonJuice
-        case sugar
-        case milk
-        
-        case salt
-        case eggs
-        case vanilla
-        
-        case oliveOil
-        case pepper
-        case rosemary
-    }
+    var instructions: [String]
 }
 
 extension Recipe {
