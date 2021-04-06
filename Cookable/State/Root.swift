@@ -17,7 +17,7 @@ struct Root {
         var onboarding        = false
         var sheet             = false
         //var alert             : AlertState<Root.Action>?
-        var isSearching       : Bool { !(recipeSearch.isEmpty && searchIngredients.isEmpty) }
+        var isSearching       : Bool { !recipeSearch.isEmpty && !searchIngredients.isEmpty }
     }
     
     enum Action: Equatable {

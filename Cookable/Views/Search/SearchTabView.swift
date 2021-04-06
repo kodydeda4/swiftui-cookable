@@ -23,7 +23,7 @@ struct SearchTabView: View {
                         }
                     }
                 }
-                .navigationBarTitle("Search Results")
+                .navigationBarTitle("Cookable Results")
                 .toolbar {
                     ToolbarItem {
                         Button("Ingredients") {
