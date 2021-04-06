@@ -14,6 +14,8 @@ struct SelectedRecipeView: View {
     let store: Store<Root.State, Root.Action>
     let recipe: Recipe
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         WithViewStore(store) { viewStore in
             FancyScrollView(
@@ -69,7 +71,7 @@ struct SelectedRecipeView: View {
                     Text("Instructions")
                         .font(.title2)
                         .bold()
-
+                    
                     ForEach(Array(zip(recipe.steps.indices, recipe.steps)), id: \.0) { index, step in
                         VStack(alignment: .leading) {
                             Text("Step \(index+1)")
@@ -83,6 +85,14 @@ struct SelectedRecipeView: View {
                 }
                 .padding()
             }
+            .gesture(
+                DragGesture()
+                    .onEnded {
+                        if $0.translation.width > 100 {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+            )
         }
     }
 }
