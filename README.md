@@ -45,6 +45,8 @@ Cookable is an iOS app that helps you find recipes to cook, based on the ingredi
 
 ## Team Info
 
+![footer](https://user-images.githubusercontent.com/45678211/113754908-b7c4d100-96dd-11eb-813d-8fbebabe50da.png)
+
 
 |Team Member    | Contact Email         |
 | ------------- | ----------------------|
@@ -53,8 +55,3 @@ Cookable is an iOS app that helps you find recipes to cook, based on the ingredi
 |Zachary Mitzke | nil     |
 |Robin Wood     | nil     |
 |Paolo Imperio  | nil     |
-
-![uncw](https://user-images.githubusercontent.com/45678211/113747625-952eba00-96d5-11eb-9b42-e0dab0840d7b.png)
-
-**UNCW CSC 450 Fall 2021**  
-Software Engineering  
