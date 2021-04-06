@@ -9,14 +9,14 @@ import SwiftUI
 import ComposableArchitecture
 
 struct Root {
-    struct State: Equatable {
+    struct State: Codable, Equatable {
         var recipeList        : [Recipe] = Recipe.allRecipes
         var recipeSearch      : [Recipe] = []
         var recipeFavorites   : [Recipe] = []
         var searchIngredients : [Recipe.Ingredient] = []
-        var onboarding        = false
+        var onboarding        = true
         var sheet             = false
-        var alert             : AlertState<Root.Action>?
+        //var alert             : AlertState<Root.Action>?
         var isSearching       : Bool { !(recipeSearch.isEmpty && searchIngredients.isEmpty) }
     }
     
@@ -26,9 +26,10 @@ struct Root {
         case save
         case load
         case keyPath(BindingAction<Root.State>)
+        case resetButtonTapped
         
         // Onboarding
-        case toggleOnboaring
+        case disableOnboarding
         
         // SearchSheet
         case toggleSearchSheet
@@ -38,13 +39,13 @@ struct Root {
         
         // Favorites
         case toggleFavoritedRecipe(Recipe)
-        case clearFavoritesAlert
-        case clearFavoritesAlertDismissed
-        case clearFavoritesAlertConfirmed
+//        case clearFavoritesAlert
+//        case clearFavoritesAlertDismissed
+//        case clearFavoritesAlertConfirmed
     }
     
     struct Environment {
-        var recipeFavoritesURL: URL {
+        var storedDataURL: URL {
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 .appendingPathComponent("state")
         }
@@ -62,13 +63,14 @@ extension Root {
                 return Effect(value: .load)
                 
             case .save:
-                let _ = JSONEncoder().write(state.recipeFavorites, to: environment.recipeFavoritesURL)
+                let _ = JSONEncoder().write(state, to: environment.storedDataURL)
+                
                 return .none
                 
             case .load:
-                switch JSONDecoder().load([Recipe].self, from: environment.recipeFavoritesURL) {
+                switch JSONDecoder().load(Root.State.self, from: environment.storedDataURL) {
                 case let .success(decodedState):
-                    state.recipeFavorites = decodedState
+                    state = decodedState
                 case .failure(_):
                     print("failed to load")
                 }
@@ -76,16 +78,20 @@ extension Root {
                 
             case .keyPath:
                 return .none
+                
+            case .resetButtonTapped:
+                state = Root.State()
+                return .none
 
             // Onboarding
-            case .toggleOnboaring:
-                state.onboarding.toggle()
+            case .disableOnboarding:
+                state.onboarding = false
                 return .none
 
             // SearchSheet
             case .toggleSearchSheet:
                 state.sheet.toggle()
-                return .none
+                return Effect(value: .save)
 
             case let .toggleSearchSheetIngredient(ingredient):
                 switch state.searchIngredients.contains(ingredient) {
@@ -103,7 +109,6 @@ extension Root {
             case .searchSheetSearchButtonTapped:
                 state.recipeSearch = state.recipeList.filter { recipe in
                     let sharedIngredients = recipe.ingredients.filter { state.searchIngredients.contains($0) }
-                    
                     return sharedIngredients.count > 0
                 }
                 return Effect(value: .toggleSearchSheet)
@@ -119,22 +124,22 @@ extension Root {
                 }
                 return Effect(value: .save)
                 
-            case .clearFavoritesAlert:
-                state.alert = .init(
-                    title: TextState("Clear Favorites?"),
-                    message: TextState("You cannot undo this action."),
-                    primaryButton: .destructive(TextState("Confirm"), send: .clearFavoritesAlertConfirmed),
-                    secondaryButton: .cancel()
-                )
-                return .none
-
-            case .clearFavoritesAlertDismissed:
-                state.alert = nil
-                return .none
-
-            case .clearFavoritesAlertConfirmed:
-                state.recipeFavorites = []
-                return .none
+//            case .clearFavoritesAlert:
+//                state.alert = .init(
+//                    title: TextState("Clear Favorites?"),
+//                    message: TextState("You cannot undo this action."),
+//                    primaryButton: .destructive(TextState("Confirm"), send: .clearFavoritesAlertConfirmed),
+//                    secondaryButton: .cancel()
+//                )
+//                return .none
+//
+//            case .clearFavoritesAlertDismissed:
+//                state.alert = nil
+//                return .none
+//
+//            case .clearFavoritesAlertConfirmed:
+//                state.recipeFavorites = []
+//                return .none
             }
         }
         .binding(action: /Action.keyPath)

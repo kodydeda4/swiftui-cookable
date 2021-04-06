@@ -85,7 +85,7 @@ struct OnboardingView: View {
                     .font(.caption)
                 
                 Button(action: {
-                    viewStore.send(.toggleOnboaring)
+                    viewStore.send(.disableOnboarding)
                 }) {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(height: 50)

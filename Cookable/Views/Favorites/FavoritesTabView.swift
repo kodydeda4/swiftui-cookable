@@ -24,12 +24,12 @@ struct FavoritesTabView: View {
                             }
                         }
                     }
-                    .alert(store.scope(state: \.alert), dismiss: .clearFavoritesAlertDismissed)
+                    //.alert(store.scope(state: \.alert), dismiss: .clearFavoritesAlertDismissed)
                     .navigationBarTitle("Favorites")
                     .toolbar {
                         ToolbarItem {
                             Button("Clear All") {
-                                viewStore.send(.clearFavoritesAlert)
+                                //viewStore.send(.clearFavoritesAlert)
                             }
                         }
                     }
