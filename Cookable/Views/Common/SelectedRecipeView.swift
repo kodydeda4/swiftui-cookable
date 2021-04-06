@@ -11,10 +11,14 @@ import Introspect
 import FancyScrollView
 
 struct SelectedRecipeView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     let store: Store<Root.State, Root.Action>
     let recipe: Recipe
     
-    @Environment(\.presentationMode) var presentationMode
+    func sortFirst(_ contents: [Recipe.Ingredient], containedIn: [Recipe.Ingredient]) -> [Recipe.Ingredient] {
+        contents.sorted(by: { containedIn.contains($0) && !containedIn.contains($1) })
+    }
     
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -53,13 +57,7 @@ struct SelectedRecipeView: View {
                         columns: [GridItem](repeating: .init(.flexible()), count: 4),
                         spacing: 20
                     ) {
-                        ForEach(recipe.ingredients.filter { viewStore.searchIngredients.contains($0) }) { ingredient in
-                            IngredientView(
-                                ingredient: ingredient,
-                                selected: viewStore.searchIngredients.contains(ingredient)
-                            )
-                        }
-                        ForEach(recipe.ingredients.filter { !viewStore.searchIngredients.contains($0)  }) { ingredient in
+                        ForEach(sortFirst(recipe.ingredients, containedIn: viewStore.searchIngredients)) { ingredient in
                             IngredientView(
                                 ingredient: ingredient,
                                 selected: viewStore.searchIngredients.contains(ingredient)
