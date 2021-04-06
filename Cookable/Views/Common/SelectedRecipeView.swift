@@ -10,6 +10,7 @@ import ComposableArchitecture
 import Introspect
 import FancyScrollView
 
+
 struct SelectedRecipeView: View {
     @Environment(\.presentationMode) var presentationMode
     
@@ -53,10 +54,7 @@ struct SelectedRecipeView: View {
                         .font(.title2)
                         .bold()
                     
-                    LazyVGrid(
-                        columns: [GridItem](repeating: .init(.flexible()), count: 4),
-                        spacing: 20
-                    ) {
+                    LazyVGrid(columns: [GridItem](repeating: .init(.flexible()), count: 4), spacing: 20) {
                         ForEach(sortFirst(recipe.ingredients, containedIn: viewStore.searchIngredients)) { ingredient in
                             IngredientView(
                                 ingredient: ingredient,

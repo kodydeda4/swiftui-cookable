@@ -14,7 +14,6 @@ struct SearchSheetView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading) {
-                // Title
                 HStack {
                     Text("My Ingredients")
                         .font(.title)
@@ -29,12 +28,8 @@ struct SearchSheetView: View {
                 Divider()
                     .padding(.bottom)
                 
-                // IngredientsList
                 ScrollView {
-                    LazyVGrid(
-                        columns: [GridItem](repeating: .init(.flexible()), count: 4),
-                        spacing: 20
-                    ) {
+                    LazyVGrid(columns: [GridItem](repeating: .init(.flexible()), count: 4), spacing: 20) {
                         ForEach(Recipe.Ingredient.allCases) { ingredient in
                             Button(action: { viewStore.send(.toggleSearchSheetIngredient(ingredient)) }) {
                                 IngredientView(
@@ -47,7 +42,7 @@ struct SearchSheetView: View {
                 }
             }
             Spacer()
-            // Button
+
             Button(action: {
                 viewStore.send(.searchSheetSearchButtonTapped)
             }) {
