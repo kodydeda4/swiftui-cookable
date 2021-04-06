@@ -14,7 +14,7 @@ struct Root {
         var recipeSearch      : [Recipe] = []
         var recipeFavorites   : [Recipe] = []
         var searchIngredients : [Recipe.Ingredient] = []
-        var onboarding        = true
+        var onboarding        = false
         var sheet             = false
         var alert             : AlertState<Root.Action>?
         var isSearching       : Bool { !(recipeSearch.isEmpty && searchIngredients.isEmpty) }
@@ -41,40 +41,12 @@ struct Root {
         case clearFavoritesAlert
         case clearFavoritesAlertDismissed
         case clearFavoritesAlertConfirmed
-        
-        // SearchSheet
     }
     
     struct Environment {
         var recipeFavoritesURL: URL {
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 .appendingPathComponent("state")
-        }
-        
-        func writeRecipeFavorites<State>(_ state: State) -> Result<Bool, Error> where State: Codable {
-            let startDate = Date()
-            
-            print("writeState: to: '\(recipeFavoritesURL)'")
-            do {
-                try JSONEncoder()
-                    .encode(state)
-                    .write(to: recipeFavoritesURL)
-                
-                print("\(Date()) elapsed: '\(startDate.timeIntervalSinceNow * -1000) ms'")
-                return .success(true)
-            } catch {
-                return .failure(error)
-            }
-        }
-        
-        func loadRecipeFavorites<State>(_ type: State.Type) -> Result<State, Error> where State: Codable {
-            do {
-                let decoded = try JSONDecoder().decode(type.self, from: Data(contentsOf: recipeFavoritesURL))
-                return .success(decoded)
-            }
-            catch {
-                return .failure(error)
-            }
         }
     }
 }
@@ -90,11 +62,11 @@ extension Root {
                 return Effect(value: .load)
                 
             case .save:
-                let _ = environment.writeRecipeFavorites(state.recipeFavorites)
+                let _ = JSONEncoder().write(state.recipeFavorites, to: environment.recipeFavoritesURL)
                 return .none
                 
             case .load:
-                switch environment.loadRecipeFavorites([Recipe].self) {
+                switch JSONDecoder().load([Recipe].self, from: environment.recipeFavoritesURL) {
                 case let .success(decodedState):
                     state.recipeFavorites = decodedState
                 case .failure(_):
