@@ -15,12 +15,12 @@ struct IngredientView: View {
     var body: some View {
         Text(ingredient.description)
             .foregroundColor(selected ? .white : .secondary)
-            .lineLimit(1)
             .frame(maxWidth: 90)
+            .lineLimit(1)
             .padding(.horizontal, 8)
             .padding(.vertical, 6)
             .background(selected ? Color.accentColor : Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .clipShape(Capsule())
     }
 }
 

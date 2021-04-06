@@ -60,6 +60,7 @@ struct SelectedRecipeView: View {
                                 ingredient: ingredient,
                                 selected: viewStore.searchIngredients.contains(ingredient)
                             )
+                            .font(.callout)
                         }
                     }
                     

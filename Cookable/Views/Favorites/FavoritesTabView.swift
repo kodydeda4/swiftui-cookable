@@ -30,6 +30,7 @@ struct FavoritesTabView: View {
                         ToolbarItem {
                             Button("Clear All") {
                                 //viewStore.send(.clearFavoritesAlert)
+                                viewStore.send(.clearFavoritesAlertConfirmed)
                             }
                         }
                     }

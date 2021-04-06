@@ -14,7 +14,7 @@ struct Root {
         var recipeSearch      : [Recipe] = []
         var recipeFavorites   : [Recipe] = []
         var searchIngredients : [Recipe.Ingredient] = []
-        var onboarding        = true
+        var onboarding        = false
         var sheet             = false
         //var alert             : AlertState<Root.Action>?
         var isSearching       : Bool { !(recipeSearch.isEmpty && searchIngredients.isEmpty) }
@@ -29,6 +29,7 @@ struct Root {
         case resetButtonTapped
         
         // Onboarding
+        case enableOnboarding
         case disableOnboarding
         
         // SearchSheet
@@ -41,7 +42,7 @@ struct Root {
         case toggleFavoritedRecipe(Recipe)
 //        case clearFavoritesAlert
 //        case clearFavoritesAlertDismissed
-//        case clearFavoritesAlertConfirmed
+        case clearFavoritesAlertConfirmed
     }
     
     struct Environment {
@@ -64,7 +65,6 @@ extension Root {
                 
             case .save:
                 let _ = JSONEncoder().write(state, to: environment.storedDataURL)
-                
                 return .none
                 
             case .load:
@@ -74,19 +74,28 @@ extension Root {
                 case .failure(_):
                     print("failed to load")
                 }
-                return .none
+                switch state == Root.State() {
+                case true:
+                    return Effect(value: .enableOnboarding)
+                case false:
+                    return .none
+                }
                 
             case .keyPath:
                 return .none
                 
             case .resetButtonTapped:
                 state = Root.State()
-                return .none
+                return Effect(value: .save)
 
             // Onboarding
+            case .enableOnboarding:
+                state.onboarding = true
+                return .none
+
             case .disableOnboarding:
                 state.onboarding = false
-                return .none
+                return Effect(value: .save)
 
             // SearchSheet
             case .toggleSearchSheet:
@@ -137,9 +146,9 @@ extension Root {
 //                state.alert = nil
 //                return .none
 //
-//            case .clearFavoritesAlertConfirmed:
-//                state.recipeFavorites = []
-//                return .none
+            case .clearFavoritesAlertConfirmed:
+                state.recipeFavorites = []
+                return .none
             }
         }
         .binding(action: /Action.keyPath)

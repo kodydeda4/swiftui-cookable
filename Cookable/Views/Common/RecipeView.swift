@@ -65,8 +65,10 @@ struct RecipeView: View {
         }
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .padding(.horizontal)
-        .padding(.vertical, 8)
+        //.padding(.horizontal)
+        //.padding(.vertical, 8)
+        .padding()
+        
     }
 }
 
