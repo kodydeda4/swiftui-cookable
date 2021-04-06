@@ -109,11 +109,11 @@ extension Root {
                 case false:
                     state.searchIngredients.append(ingredient)
                 }
-                return .none
+                return Effect(value: .save)
 
             case .searchSheetClearAllButtonTapped:
                 state.searchIngredients = []
-                return .none
+                return Effect(value: .save)
                 
             case .searchSheetSearchButtonTapped:
                 state.recipeSearch = state.recipeList.filter { recipe in
@@ -148,7 +148,7 @@ extension Root {
 //
             case .clearFavoritesAlertConfirmed:
                 state.recipeFavorites = []
-                return .none
+                return Effect(value: .save)
             }
         }
         .binding(action: /Action.keyPath)
