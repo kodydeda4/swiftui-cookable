@@ -53,5 +53,5 @@ Cookable is an iOS app that helps you find recipes to cook, based on the ingredi
 |Kody Deda      | kodydeda4@gmail.com        |
 |Zane Bernard   | zanebernardfilms@gmail.com |
 |Zachary Mitzke | Ztm6917@uncw.edu           |
-|Robin Wood     | nil                        |
-|Paolo Imperio  | nil                        |
+|Robin Wood     | robinrebeccawood@gmail.com |
+|Paolo Imperio  | paolouncw@gmail.com        |
