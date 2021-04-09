@@ -20,15 +20,40 @@ struct Recipe: Codable, Equatable, Identifiable {
 extension Recipe {
     static var allRecipes: [Recipe] {
         [
+            // Kody
             applePie,
             banannaPudding,
             fruitSalad,
             chickenDinner,
             tomatoSoup
+            
+            // Paolo
+            // -----
+            // -----
+            // -----
+            // -----
+            // -----
+            
+            // Robin
+            // -----
+            // -----
+            // -----
+            // -----
+            // -----
+
+            // Zach
+            // -----
+            // -----
+            // -----
+            // -----
+            // -----
+
+            // Zane
+            // -----
+            // -----
+            // -----
+            // -----
+            // -----
         ]
     }
 }
-
-
-
-// 1. Copy

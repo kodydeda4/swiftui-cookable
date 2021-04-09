@@ -48,6 +48,7 @@ extension Recipe {
         ]
     )
 }
+
 extension Recipe {
     static let fruitSalad = Recipe(
         name: "Fruit Salad",
@@ -59,6 +60,7 @@ extension Recipe {
         ]
     )
 }
+
 extension Recipe {
     static let chickenDinner = Recipe(
         name: "Chicken, Apple, and Brussels Sprout Sheet Pan Dinner",
