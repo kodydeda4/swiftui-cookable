@@ -44,6 +44,11 @@ extension Recipe {
         case pepper
         case rosemary
         
+        case chickenBroth
+        case driedTomatos
+        case basil
+        case garlic
+        
         var description: String {
             rawValue.seperateUppercaseCharacters.lowercased()
         }
