@@ -1,6 +1,6 @@
 # 🏛 UNCW CSC 450 | Cookable
 
-![banner](https://user-images.githubusercontent.com/45678211/113753527-30c32900-96dc-11eb-8ca1-6db3d08f41ca.png)
+![banner](https://user-images.githubusercontent.com/45678211/116265366-0ef01b80-a749-11eb-8a3e-fad8dfed142c.png)
 
 ## About Cookable
 
@@ -45,7 +45,7 @@ Cookable is an iOS app that helps you find recipes to cook, based on the ingredi
 
 ## Team Info
 
-![footer](https://user-images.githubusercontent.com/45678211/113754908-b7c4d100-96dd-11eb-813d-8fbebabe50da.png)
+![footer](https://user-images.githubusercontent.com/45678211/116265373-10b9df00-a749-11eb-95b3-6e76b19252a7.png)
 
 
 |Team Member    | Contact Email              |
