@@ -6,14 +6,13 @@
 
 Cookable is an iOS app that helps you find recipes to cook, based on the ingredients you have at hand.
 
-
 ## 👏 Onboarding /  About
 
 * Apple-like onboarding screen
-* Introduces the app & authors
+* Simple introduction to the app
 
-![onboarding](https://user-images.githubusercontent.com/45678211/113738845-41b86e00-96cd-11eb-875b-123b2ae83d1f.png)
-![about](https://user-images.githubusercontent.com/45678211/113738847-41b86e00-96cd-11eb-9aa8-9d3ced13ad59.png)
+![onboarding](https://user-images.githubusercontent.com/45678211/119198024-b0bc0d00-ba56-11eb-84ae-d73ee8544e4e.png)
+![about](https://user-images.githubusercontent.com/45678211/119198019-aef24980-ba56-11eb-8643-e55111f3bef6.png)
 
 ## 🔍 Search
 
