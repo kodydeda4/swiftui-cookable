@@ -15,9 +15,17 @@ struct AboutTabView: View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 Form {
-                    Section(header: Text("Author")) {
+                    Section(header: Text("UNCW Fall 2021")) {
+                        Text("CSC 450 - Software Engineering")
+                        Text("Dr Ralph Bradley")
+                    }
+                    Section(header: Text("Team Members")) {
                         ForEach([
                             "Kody Deda",
+                            "Zane Bernard",
+                            "Zachary Mitzke",
+                            "Robin Wood",
+                            "Paolo Imperio"
                         ], id: \.self) {
                             Text($0)
                         }

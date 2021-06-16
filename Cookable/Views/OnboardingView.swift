@@ -78,7 +78,7 @@ struct OnboardingView: View {
                 
                 Spacer()
                 
-                Text("Kody Deda")
+                Text("Kody | Zane | Zach | Robin | Paolo")
                     .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
                     .padding(.bottom)
