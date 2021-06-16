@@ -1,6 +1,6 @@
-# 👨🏼‍🍳 Cookable
+# 🏛 UNCW CSC 450 | Cookable
 
-![banner](https://user-images.githubusercontent.com/45678211/119196789-bf092980-ba54-11eb-8bf5-d6cb21f70bb0.png)
+![banner](https://user-images.githubusercontent.com/45678211/116265366-0ef01b80-a749-11eb-8a3e-fad8dfed142c.png)
 
 ## About Cookable
 
