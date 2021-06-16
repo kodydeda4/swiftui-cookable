@@ -1,4 +1,4 @@
-# 👨🏼‍🍳👩🏼‍🍳 Cookable
+# 👨🏼‍🍳 Cookable
 
 ![banner](https://user-images.githubusercontent.com/45678211/119196789-bf092980-ba54-11eb-8bf5-d6cb21f70bb0.png)
 
