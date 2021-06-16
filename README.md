@@ -43,5 +43,15 @@ Cookable is an iOS app that helps you find recipes to cook, based on the ingredi
 ![favorites](https://user-images.githubusercontent.com/45678211/113738860-43823180-96cd-11eb-9677-ee3f250d21b6.png)
 ![emptyfavorites](https://user-images.githubusercontent.com/45678211/113738849-42510480-96cd-11eb-9e10-49969212fdf9.png)
 
+## Team Info
+
+![footer](https://user-images.githubusercontent.com/45678211/116265373-10b9df00-a749-11eb-95b3-6e76b19252a7.png)
 
 
+|Team Member    | Contact Email              |
+| ------------- | ---------------------------|
+|Kody Deda      | kodydeda4@gmail.com        |
+|Zane Bernard   | zanebernardfilms@gmail.com |
+|Zachary Mitzke | Ztm6917@uncw.edu           |
+|Robin Wood     | robinrebeccawood@gmail.com |
+|Paolo Imperio  | paolouncw@gmail.com        |
