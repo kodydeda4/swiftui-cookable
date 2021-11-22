@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		330C531226209E19000F0728 /* kodyRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C531126209E19000F0728 /* kodyRecipes.swift */; };
 		331E1C6E261B49C0003A833E /* FancyScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 331E1C6D261B49C0003A833E /* FancyScrollView */; };
 		3324515D26134A8600C37C17 /* SelectedRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324515C26134A8600C37C17 /* SelectedRecipeView.swift */; };
 		332C3AD726137847001DBA75 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C3AD626137847001DBA75 /* OnboardingView.swift */; };
@@ -35,7 +34,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		330C531126209E19000F0728 /* kodyRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kodyRecipes.swift; sourceTree = "<group>"; };
 		3324515C26134A8600C37C17 /* SelectedRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRecipeView.swift; sourceTree = "<group>"; };
 		332C3AD626137847001DBA75 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		333C2B9E25FF76A7008F5139 /* Cookable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,14 +73,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		331E1C70261B4C5C003A833E /* Recipes */ = {
-			isa = PBXGroup;
-			children = (
-				330C531126209E19000F0728 /* kodyRecipes.swift */,
-			);
-			path = Recipes;
-			sourceTree = "<group>";
-		};
 		333C2B9525FF76A7008F5139 = {
 			isa = PBXGroup;
 			children = (
@@ -196,7 +186,6 @@
 			children = (
 				335E1EC526122207006CCF56 /* Recipe.swift */,
 				33623092261C89D3008B34D6 /* Ingredient.swift */,
-				331E1C70261B4C5C003A833E /* Recipes */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,7 +269,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				330C531226209E19000F0728 /* kodyRecipes.swift in Sources */,
 				335E1EC2261216B8006CCF56 /* FavoritesTabView.swift in Sources */,
 				335E1EBE2612167F006CCF56 /* SearchTabView.swift in Sources */,
 				33623099261C8C84008B34D6 /* JSONDecoder+Extensions.swift in Sources */,
